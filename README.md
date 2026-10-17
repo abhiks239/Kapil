@@ -339,9 +339,10 @@
 
 <div id="toast" class="toast"></div>
 
-<!-- Firebase Realtime Database SDK -->
+<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 
 <script>
 /* ============================================================
@@ -359,11 +360,6 @@ const firebaseConfig = {
 };
 
 /* ============================================================
-   🔐 ADMIN PASSWORD
-   ============================================================ */
-const ADMIN_PASSWORD = "mindo@admin2024";
-
-/* ============================================================
    🖼️ IMAGE PATH & CONTACT
    ============================================================ */
 const IMG_BASE = "./";
@@ -373,6 +369,7 @@ const PHONE = "918383050500";
    STATE & INIT
    ============================================================ */
 let db = null;
+let auth = null;
 let firebaseReady = false;
 let products = [];
 let paymentSettings = { qrCode:"", upiId:"" };
@@ -382,17 +379,32 @@ let adminTab = "orders";
 let showAllProducts = false;
 
 async function init(){
-  // 🧹 पुराना ब्राउज़र डेटा साफ़ करें ताकि डिफ़ॉल्ट प्रोडक्ट्स न दिखें
+  // पुराना ब्राउज़र डेटा साफ़ करें
   localStorage.removeItem("mindo_products");
 
   try {
     if (firebaseConfig.databaseURL && firebaseConfig.databaseURL !== "YOUR_DATABASE_URL"){
       firebase.initializeApp(firebaseConfig);
       db = firebase.database();
+      auth = firebase.auth();
       firebaseReady = true;
-      console.log("✅ Firebase Realtime DB ready");
-    } else {
-      console.warn("⚠️ Firebase config missing — localStorage mode");
+      console.log("✅ Firebase ready");
+
+      // लॉगिन स्टेट चेक करें (अगर पहले से लॉगिन है)
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          isAdmin = true;
+          // अगर एडमिन मोडल खुला है, तो डैशबोर्ड दिखाएं
+          if (document.getElementById("adminModal").classList.contains("active")) {
+             renderAdminDashboard();
+          }
+        } else {
+          isAdmin = false;
+          if (document.getElementById("adminModal").classList.contains("active")) {
+             renderAdminLogin();
+          }
+        }
+      });
     }
   } catch(e){ console.warn("Firebase init failed:", e); }
 
@@ -413,14 +425,13 @@ async function loadProducts(){
       if (data) {
         products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
       } else {
-        products = []; // Firebase खाली है
+        products = [];
       }
     } catch(e){ 
       console.warn("Products load failed:", e); 
       products = [];
     }
   } else {
-    // अगर फायरबेस काम नहीं कर रहा तो लोकल स्टोरेज से लोड करेंगे
     const cached = localStorage.getItem("mindo_products_new");
     products = cached ? JSON.parse(cached) : [];
   }
@@ -588,7 +599,7 @@ async function submitOrder(e){
 }
 
 /* ============================================================
-   ADMIN PANEL
+   ADMIN PANEL (Firebase Auth)
    ============================================================ */
 function openAdmin(){
   document.getElementById("adminModal").classList.add("active");
@@ -599,27 +610,40 @@ function openAdmin(){
 
 function renderAdminLogin(){
   document.getElementById("adminContent").innerHTML = `
-    <h2>🔐 Admin Panel</h2>
-    <p class="subtitle">Password डालें</p>
+    <h2>🔐 Admin Login</h2>
+    <p class="subtitle">कृपया अपना ईमेल और पासवर्ड डालें</p>
     <form onsubmit="adminLogin(event)">
       <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="adminPass" required autofocus>
+        <label>Email</label>
+        <input type="email" id="adminEmail" required placeholder="admin@example.com" autofocus>
       </div>
-      <button type="submit" class="btn green" style="width:100%">Login</button>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="adminPass" required placeholder="********">
+      </div>
+      <button type="submit" class="btn green" style="width:100%" id="loginBtn">Login</button>
     </form>`;
 }
 
 function adminLogin(e){
   e.preventDefault();
+  const email = document.getElementById("adminEmail").value;
   const pass = document.getElementById("adminPass").value;
-  if (pass === ADMIN_PASSWORD){
-    isAdmin = true;
-    renderAdminDashboard();
-    toast("Welcome, Admin! 👋", "success");
-  } else {
-    toast("गलत password!", "error");
-  }
+  const btn = document.getElementById("loginBtn");
+  
+  btn.disabled = true;
+  btn.textContent = "⏳ Checking...";
+
+  auth.signInWithEmailAndPassword(email, pass)
+    .then(() => {
+      // सफलता का मैसेज onAuthStateChanged संभालेगा
+      toast("Welcome, Admin! 👋", "success");
+    })
+    .catch(err => {
+      toast("Login Failed: " + err.message, "error");
+      btn.disabled = false;
+      btn.textContent = "Login";
+    });
 }
 
 function renderAdminDashboard(){
@@ -659,7 +683,7 @@ async function renderOrdersPanel(panel){
       orders = Object.keys(data).map(key => ({ id: key, ...data[key] }));
       orders.sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
     } catch(e){
-      toast("Error loading orders", "error");
+      toast("Error loading orders. Check rules.", "error");
     }
   } else {
     orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
@@ -850,11 +874,9 @@ async function saveProduct(e, index){
       }
     }
     
-    // Local update
     if (index >= 0) products[index] = { ...products[index], ...data };
     else products.push({ id:"local_"+Date.now(), ...data });
     
-    // Save to localStorage as fallback
     localStorage.setItem("mindo_products_new", JSON.stringify(products));
 
     toast("✅ Saved", "success");
@@ -870,8 +892,6 @@ async function deleteProduct(index){
       await db.ref('products/' + products[index].id).remove();
     }
     products.splice(index, 1);
-    
-    // Save to localStorage as fallback
     localStorage.setItem("mindo_products_new", JSON.stringify(products));
 
     toast("🗑️ Deleted");
@@ -931,9 +951,10 @@ async function saveUpi(){
 }
 
 function adminLogout(){
-  isAdmin = false;
-  closeModal("adminModal");
-  toast("Logged out");
+  auth.signOut().then(() => {
+    closeModal("adminModal");
+    toast("Logged out securely");
+  });
 }
 
 /* ============================================================
