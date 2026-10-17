@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
@@ -166,16 +167,18 @@
 
 <script>
   // ---- Apne products yahan edit karein ----
-  // img: images folder mein apni photo daalein (jaise images/red-chilli.jpg)
+  // IMG_BASE: jahan aapki images hain. Same folder = "" ; GitHub raw link =
+  // "https://raw.githubusercontent.com/USERNAME/REPO/main/"  (USERNAME/REPO badlein)
+  const IMG_BASE = "";
   const products = [
-    {name:"Red Chilli Pickle", hi:"लाल मिर्च का प्यार", tag:"Mustard oil, saunf, ajwain aur rai se bharpur – bharwa mota lal mirch.", price:380, emoji:"🌶️", img:"images/red-chilli.jpg"},
-    {name:"Gujrati Green Chilli Pickle", hi:"गुजरती मिर्च का आचार", tag:"Hari mirch, haldi aur khade masalon ka tikha swad.", price:360, emoji:"🫑", img:"images/green-chilli.jpg"},
-    {name:"Sweet Lime Pickle", hi:"मीठा निम्बू का अचार", tag:"Khake dekho, thode se mithe bhi hai!", price:380, emoji:"🍋", img:"images/sweet-lime.jpg"},
-    {name:"Dry Mango Pickle", hi:"कच्चा / सूखा आम का अचार", tag:"King kon hai? Aap hi hai! Khatta, tikha, chatpata.", price:360, emoji:"🥭", img:"images/dry-mango.jpg"},
-    {name:"Gajar Pickle", hi:"गाजर का अचार", tag:"Special gajar – khoon jaisi laal, ghar jaisa swad.", price:360, emoji:"🥕", img:"images/gajar.jpg"},
-    {name:"Garlic Pickle", hi:"लहसुन का अचार", tag:"Pet ka dhyan main rakhunga – gas ki tension choro!", price:360, emoji:"🧄", img:"images/garlic.jpg"},
-    {name:"Kair Pickle", hi:"कैर, टेटी का अचार", tag:"Special Rajasthani swad – kahti chatpati nu mai.", price:400, emoji:"🫒", img:"images/kair.jpg"},
-    {name:"Mixed Pickle (9 रंगों का प्यार)", hi:"मिक्स अचार", tag:"9 alag-alag achaaron ka ek jar mein swad.", price:360, emoji:"🥗", img:"images/mixed.jpg"}
+    {name:"Red Chilli Pickle", hi:"लाल मिर्च का प्यार", tag:"Mustard oil, saunf, ajwain aur rai se bharpur – bharwa mota lal mirch.", price:380, emoji:"🌶️", img:"2.jpeg"},
+    {name:"Gujrati Green Chilli Pickle", hi:"गुजरती मिर्च का आचार", tag:"Hari mirch, haldi aur khade masalon ka tikha swad.", price:360, emoji:"🫑", img:"3.jpeg"},
+    {name:"Sweet Lime Pickle", hi:"मीठा निम्बू का अचार", tag:"Khake dekho, thode se mithe bhi hai!", price:380, emoji:"🍋", img:"4.jpeg"},
+    {name:"Dry Mango Pickle", hi:"कच्चा / सूखा आम का अचार", tag:"King kon hai? Aap hi hai! Khatta, tikha, chatpata.", price:360, emoji:"🥭", img:"5.jpeg"},
+    {name:"Gajar Pickle", hi:"गाजर का अचार", tag:"Special gajar – khoon jaisi laal, ghar jaisa swad.", price:360, emoji:"🥕", img:"6.jpeg"},
+    {name:"Garlic Pickle", hi:"लहसुन का अचार", tag:"Pet ka dhyan main rakhunga – gas ki tension choro!", price:360, emoji:"🧄", img:""},
+    {name:"Kair Pickle", hi:"कैर, टेटी का अचार", tag:"Special Rajasthani swad – kahti chatpati nu mai.", price:400, emoji:"🫒", img:""},
+    {name:"Mixed Pickle (9 रंगों का प्यार)", hi:"मिक्स अचार", tag:"9 alag-alag achaaron ka ek jar mein swad.", price:360, emoji:"🥗", img:""}
   ];
 
   const grid = document.getElementById("productGrid");
@@ -184,7 +187,7 @@
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-      <div class="pic"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+      <div class="pic"><img src="${p.img ? IMG_BASE + p.img : ''}" alt="${p.name}" loading="lazy"></div>
       <div class="body">
         <h3>${p.name}</h3>
         <div class="hi">${p.hi}</div>
