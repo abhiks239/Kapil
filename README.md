@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
@@ -383,6 +382,9 @@ let adminTab = "orders";
 let showAllProducts = false;
 
 async function init(){
+  // 🧹 पुराना ब्राउज़र डेटा साफ़ करें ताकि डिफ़ॉल्ट प्रोडक्ट्स न दिखें
+  localStorage.removeItem("mindo_products");
+
   try {
     if (firebaseConfig.databaseURL && firebaseConfig.databaseURL !== "YOUR_DATABASE_URL"){
       firebase.initializeApp(firebaseConfig);
@@ -401,7 +403,7 @@ async function init(){
 }
 
 /* ============================================================
-   PRODUCTS (Default products removed)
+   PRODUCTS
    ============================================================ */
 async function loadProducts(){
   if (firebaseReady){
@@ -418,8 +420,8 @@ async function loadProducts(){
       products = [];
     }
   } else {
-    // Fallback to LocalStorage
-    const cached = localStorage.getItem("mindo_products");
+    // अगर फायरबेस काम नहीं कर रहा तो लोकल स्टोरेज से लोड करेंगे
+    const cached = localStorage.getItem("mindo_products_new");
     products = cached ? JSON.parse(cached) : [];
   }
 }
@@ -853,7 +855,7 @@ async function saveProduct(e, index){
     else products.push({ id:"local_"+Date.now(), ...data });
     
     // Save to localStorage as fallback
-    localStorage.setItem("mindo_products", JSON.stringify(products));
+    localStorage.setItem("mindo_products_new", JSON.stringify(products));
 
     toast("✅ Saved", "success");
     renderProducts();
@@ -870,7 +872,7 @@ async function deleteProduct(index){
     products.splice(index, 1);
     
     // Save to localStorage as fallback
-    localStorage.setItem("mindo_products", JSON.stringify(products));
+    localStorage.setItem("mindo_products_new", JSON.stringify(products));
 
     toast("🗑️ Deleted");
     renderProducts();
