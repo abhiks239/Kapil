@@ -131,6 +131,12 @@
   /* Floating Buttons */
   .wa{position:fixed;right:20px;bottom:20px;background:linear-gradient(135deg,#25a244,#1c7e34);color:#fff;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.9rem;box-shadow:0 8px 26px rgba(37,162,68,.5);z-index:99;transition:.25s}
   .wa:hover{transform:scale(1.1)}
+  
+  /* Cart Floating Button */
+  .cart-btn-float{position:fixed;right:20px;bottom:95px;background:linear-gradient(135deg,var(--gold),#f5c445);color:var(--dark);width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 8px 26px rgba(240,180,41,.5);z-index:99;transition:.25s;cursor:pointer}
+  .cart-btn-float:hover{transform:scale(1.1)}
+  .cart-badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;width:24px;height:24px;border-radius:50%;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+
   .admin-btn{position:fixed;left:16px;bottom:16px;width:36px;height:36px;border-radius:50%;background:rgba(43,26,16,.15);color:rgba(43,26,16,.5);border:0;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:.3s;z-index:98;backdrop-filter:blur(6px)}
   .admin-btn:hover{background:var(--green);color:#fff;transform:rotate(45deg) scale(1.15)}
 
@@ -140,7 +146,7 @@
   .modal-box{background:#fff;border-radius:22px;max-width:560px;width:100%;margin:auto;position:relative;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:popIn .3s}
   .modal-box.wide{max-width:900px}
   @keyframes popIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
-  .modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#f3ede3;color:var(--dark);border:0;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;line-height:1;transition:.2s}
+  .modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#f3ede3;color:var(--dark);border:0;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;line-height:1;transition:.2s;z-index:10}
   .modal-close:hover{background:var(--red);color:#fff}
   .modal h2{color:var(--green);margin-bottom:6px;font-size:1.6rem}
   .modal .subtitle{color:#7a6b5c;font-size:.9rem;margin-bottom:20px}
@@ -152,18 +158,27 @@
   .form-group textarea{resize:vertical;min-height:70px}
   .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
-  /* Order Modal */
-  .order-product{display:flex;gap:14px;align-items:center;background:#fff8ea;padding:14px;border-radius:14px;margin-bottom:18px;border:1px solid rgba(240,180,41,.3)}
-  .order-product .op-pic{width:64px;height:64px;border-radius:10px;background:#ffe4b3;display:flex;align-items:center;justify-content:center;font-size:2rem;overflow:hidden;flex-shrink:0}
-  .order-product .op-pic img{width:100%;height:100%;object-fit:cover}
-  .order-product .op-info h4{color:var(--green);font-size:1.05rem}
-  .order-product .op-info .pr{color:var(--red);font-weight:700}
+  /* Cart Modal Specific */
+  .cart-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px dashed #e5ddd0}
+  .cart-item:last-child{border-bottom:0}
+  .cart-item .ci-pic{width:60px;height:60px;border-radius:10px;background:#ffe4b3;display:flex;align-items:center;justify-content:center;font-size:2rem;overflow:hidden;flex-shrink:0}
+  .cart-item .ci-pic img{width:100%;height:100%;object-fit:cover}
+  .cart-item .ci-info{flex:1}
+  .cart-item .ci-info h4{font-size:1rem;color:var(--green);margin-bottom:4px}
+  .cart-item .ci-price{font-weight:700;color:var(--red);font-size:.95rem}
+  .qty-controls{display:flex;align-items:center;gap:8px;background:#f3ede3;border-radius:20px;padding:2px 8px}
+  .qty-controls button{background:transparent;border:0;font-size:1.2rem;font-weight:700;color:var(--dark);cursor:pointer;padding:0 4px}
+  .qty-controls span{font-weight:700;font-size:.9rem;min-width:20px;text-align:center}
+  .remove-btn{background:transparent;border:0;color:#ccc;font-size:1.2rem;cursor:pointer;transition:.2s}
+  .remove-btn:hover{color:var(--red)}
+
   .qr-section{text-align:center;margin-top:20px;padding-top:20px;border-top:2px dashed #e5ddd0}
   .qr-section h4{color:var(--green);margin-bottom:12px}
-  .qr-img{width:200px;height:200px;margin:0 auto 12px;border-radius:12px;border:3px solid var(--gold);padding:6px;background:#fff;object-fit:contain}
-  .upi-box{background:#fff8ea;padding:12px;border-radius:10px;font-family:monospace;font-size:.95rem;display:inline-block;margin:6px 0;font-weight:600}
+  .qr-img{width:180px;height:180px;margin:0 auto 12px;border-radius:12px;border:3px solid var(--gold);padding:6px;background:#fff;object-fit:contain}
+  .upi-box{background:#fff8ea;padding:10px;border-radius:10px;font-family:monospace;font-size:.95rem;display:inline-block;margin:6px 0;font-weight:600}
   .total-row{display:flex;justify-content:space-between;padding:14px 0;border-top:2px solid #e5ddd0;margin-top:14px;font-size:1.1rem;font-weight:700}
   .total-row .amt{color:var(--red);font-family:'Baloo 2',sans-serif;font-size:1.5rem}
+  
   .success-box{text-align:center;padding:20px}
   .success-box .check{font-size:4rem;color:#25a244;margin-bottom:10px}
   .success-box h3{color:var(--green);margin-bottom:10px;font-size:1.5rem}
@@ -265,6 +280,7 @@
   </div>
 </section>
 
+<!-- Other sections remain same -->
 <section class="why" id="why">
   <div class="container">
     <div class="title"><div class="sub">Why Choose Us</div><h2>Mindo क्यों?</h2></div>
@@ -319,17 +335,23 @@
   </div>
 </footer>
 
+<!-- Floating Buttons -->
 <a class="wa" href="https://wa.me/918383050500" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+<div class="cart-btn-float" onclick="openCart()" title="View Cart">
+  🛒
+  <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+</div>
 <button class="admin-btn" onclick="openAdmin()" title="Admin Panel">⚙️</button>
 
-<!-- Modals -->
-<div id="orderModal" class="modal">
+<!-- Cart Modal -->
+<div id="cartModal" class="modal">
   <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('orderModal')">×</button>
-    <div id="orderContent"></div>
+    <button class="modal-close" onclick="closeModal('cartModal')">×</button>
+    <div id="cartContent"></div>
   </div>
 </div>
 
+<!-- Admin Modal -->
 <div id="adminModal" class="modal">
   <div class="modal-box wide">
     <button class="modal-close" onclick="closeModal('adminModal')">×</button>
@@ -359,9 +381,6 @@ const firebaseConfig = {
   measurementId: "G-CHRK14YN6D"
 };
 
-/* ============================================================
-   🖼️ IMAGE PATH & CONTACT
-   ============================================================ */
 const IMG_BASE = "./";
 const PHONE = "918383050500";
 
@@ -372,14 +391,13 @@ let db = null;
 let auth = null;
 let firebaseReady = false;
 let products = [];
+let cart = JSON.parse(localStorage.getItem("mindo_cart")) || [];
 let paymentSettings = { qrCode:"", upiId:"" };
-let currentOrderItem = null;
 let isAdmin = false;
 let adminTab = "orders";
 let showAllProducts = false;
 
 async function init(){
-  // पुराना ब्राउज़र डेटा साफ़ करें
   localStorage.removeItem("mindo_products");
 
   try {
@@ -388,21 +406,14 @@ async function init(){
       db = firebase.database();
       auth = firebase.auth();
       firebaseReady = true;
-      console.log("✅ Firebase ready");
 
-      // लॉगिन स्टेट चेक करें (अगर पहले से लॉगिन है)
       auth.onAuthStateChanged(user => {
         if (user) {
           isAdmin = true;
-          // अगर एडमिन मोडल खुला है, तो डैशबोर्ड दिखाएं
-          if (document.getElementById("adminModal").classList.contains("active")) {
-             renderAdminDashboard();
-          }
+          if (document.getElementById("adminModal").classList.contains("active")) renderAdminDashboard();
         } else {
           isAdmin = false;
-          if (document.getElementById("adminModal").classList.contains("active")) {
-             renderAdminLogin();
-          }
+          if (document.getElementById("adminModal").classList.contains("active")) renderAdminLogin();
         }
       });
     }
@@ -411,6 +422,7 @@ async function init(){
   await loadProducts();
   await loadPaymentSettings();
   renderProducts();
+  updateCartBadge();
   document.getElementById("yr").textContent = new Date().getFullYear();
 }
 
@@ -422,15 +434,8 @@ async function loadProducts(){
     try {
       const snapshot = await db.ref('products').once('value');
       const data = snapshot.val();
-      if (data) {
-        products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-      } else {
-        products = [];
-      }
-    } catch(e){ 
-      console.warn("Products load failed:", e); 
-      products = [];
-    }
+      products = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
+    } catch(e){ products = []; }
   } else {
     const cached = localStorage.getItem("mindo_products_new");
     products = cached ? JSON.parse(cached) : [];
@@ -463,7 +468,7 @@ function renderProducts(){
             <span class="price">₹${p.price}${p.mrp ? `<small>₹${p.mrp}</small>` : ''}</span>
             <span class="wt">450g</span>
           </div>
-          <button class="btn" onclick='openOrder(${JSON.stringify(p).replace(/'/g,"&#39;")})'>🛒 Order करें</button>
+          <button class="btn green" onclick='addToCart(${JSON.stringify(p).replace(/'/g,"&#39;")})'>🛒 कार्ट में जोड़ें</button>
         </div>
       </div>`;
   }).join("");
@@ -478,8 +483,180 @@ function renderProducts(){
         </div>
       </div>`;
   }
-
   grid.innerHTML = html;
+}
+
+/* ============================================================
+   CART FLOW
+   ============================================================ */
+function addToCart(p){
+  const existing = cart.find(item => item.name === p.name);
+  if(existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ ...p, qty: 1 });
+  }
+  saveCart();
+  updateCartBadge();
+  toast("✅ कार्ट में जोड़ दिया गया!", "success");
+}
+
+function saveCart(){
+  localStorage.setItem("mindo_cart", JSON.stringify(cart));
+}
+
+function updateCartBadge(){
+  const badge = document.getElementById("cartBadge");
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  if(count > 0){
+    badge.textContent = count;
+    badge.style.display = "flex";
+  } else {
+    badge.style.display = "none";
+  }
+}
+
+function updateQty(index, change){
+  cart[index].qty += change;
+  if(cart[index].qty <= 0){
+    cart.splice(index, 1);
+  }
+  saveCart();
+  updateCartBadge();
+  renderCartContent();
+}
+
+function removeFromCart(index){
+  cart.splice(index, 1);
+  saveCart();
+  updateCartBadge();
+  renderCartContent();
+}
+
+function openCart(){
+  document.getElementById("cartModal").classList.add("active");
+  document.body.style.overflow = "hidden";
+  renderCartContent();
+}
+
+function renderCartContent(){
+  const c = document.getElementById("cartContent");
+  
+  if(cart.length === 0){
+    c.innerHTML = `
+      <h2>🛒 आपका कार्ट</h2>
+      <div class="empty-state" style="padding:30px 10px">
+        <div class="ico">🛒</div>
+        <p>आपका कार्ट खाली है।</p>
+        <button class="btn green" style="margin-top:15px" onclick="closeModal('cartModal')">प्रोडक्ट देखें</button>
+      </div>`;
+    return;
+  }
+
+  let itemsHtml = cart.map((item, index) => {
+    const imgUrl = item.img ? (item.img.startsWith("http") || item.img.startsWith("data:") ? item.img : IMG_BASE + item.img) : "";
+    return `
+      <div class="cart-item">
+        <div class="ci-pic">${imgUrl ? `<img src="${imgUrl}" alt="">` : (item.emoji||"🫙")}</div>
+        <div class="ci-info">
+          <h4>${item.name}</h4>
+          <div class="ci-price">₹${item.price}</div>
+        </div>
+        <div class="qty-controls">
+          <button onclick="updateQty(${index}, -1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="updateQty(${index}, 1)">+</button>
+        </div>
+        <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
+      </div>`;
+  }).join("");
+
+  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  
+  const qrHtml = paymentSettings.qrCode
+    ? `<div class="qr-section">
+        <h4>💳 Payment / भुगतान</h4>
+        <img src="${paymentSettings.qrCode}" alt="QR" class="qr-img">
+        ${paymentSettings.upiId ? `<div>UPI ID: <span class="upi-box">${paymentSettings.upiId}</span></div>` : ""}
+      </div>` : "";
+
+  c.innerHTML = `
+    <h2>🛒 आपका कार्ट</h2>
+    <div style="max-height: 30vh; overflow-y:auto; padding-right:10px; margin-bottom:15px">
+      ${itemsHtml}
+    </div>
+    
+    <form id="cartOrderForm" onsubmit="submitCartOrder(event)">
+      <div class="total-row" style="margin-top:0; padding-top:10px; border-top:2px dashed #e5ddd0">
+        <span>Total:</span><span class="amt">₹${total}</span>
+      </div>
+      
+      <div style="margin-top:15px" class="form-group"><label>आपका नाम *</label><input type="text" name="customerName" required placeholder="Full name"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required pattern="[0-9]{10}" placeholder="10 digit mobile" maxlength="10"></div>
+      </div>
+      <div class="form-group"><label>पूरा Address *</label><textarea name="address" required placeholder="House, Street, Area, City, Pincode"></textarea></div>
+      <div class="form-group"><label>Note (optional)</label><input type="text" name="note" placeholder="कोई special instruction"></div>
+      
+      ${qrHtml}
+      
+      <button type="submit" class="btn green" style="width:100%;margin-top:18px" id="submitCartBtn">✅ Order Place करें (₹${total})</button>
+    </form>`;
+}
+
+async function submitCartOrder(e){
+  e.preventDefault();
+  const btn = document.getElementById("submitCartBtn");
+  btn.disabled = true;
+  btn.textContent = "⏳ Placing order...";
+
+  const fd = new FormData(e.target);
+  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  
+  const orderData = {
+    customerName: fd.get("customerName").trim(),
+    phone: fd.get("phone").trim(),
+    address: fd.get("address").trim(),
+    note: fd.get("note").trim(),
+    items: cart.map(item => ({ name: item.name, price: item.price, qty: item.qty, emoji: item.emoji||"🫙" })),
+    total,
+    status: "pending"
+  };
+
+  try {
+    let orderId;
+    if (firebaseReady){
+      const ref = db.ref('orders').push();
+      await ref.set({ ...orderData, createdAt: firebase.database.ServerValue.TIMESTAMP });
+      orderId = ref.key.slice(-6).toUpperCase();
+    } else {
+      orderId = "LOCAL" + Date.now().toString().slice(-6);
+      const orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
+      orders.push({ id: orderId, ...orderData, createdAt: Date.now() });
+      localStorage.setItem("mindo_orders", JSON.stringify(orders));
+    }
+
+    const itemsString = cart.map(item => `${item.name} (x${item.qty})`).join(", ");
+    const waMsg = encodeURIComponent(
+      `Namaste Mindo! Order placed\n\n👤 ${orderData.customerName}\n📞 ${orderData.phone}\n📦 ${itemsString}\n💰 Total: ₹${total}\n📍 ${orderData.address}\n\nOrder ID: ${orderId}`
+    );
+    
+    document.getElementById("cartContent").innerHTML = `
+      <div class="success-box">
+        <div class="check">✅</div>
+        <h3>Order Place हो गया!</h3>
+        <p>हम जल्द ही WhatsApp/Call पर confirm करेंगे।</p>
+        <div class="oid">Order ID: ${orderId}</div>
+        <p style="font-size:.85rem;margin-top:16px">Turant confirmation के लिए WhatsApp पर message भेजें:</p>
+        <a class="btn green" href="https://wa.me/${PHONE}?text=${waMsg}" target="_blank" style="margin-top:8px;margin-bottom:10px">💬 WhatsApp पर Confirm करें</a>
+        <button class="btn ghost" onclick="cart = []; saveCart(); updateCartBadge(); closeModal('cartModal'); renderProducts();">Continue Shopping</button>
+      </div>`;
+  } catch(err){
+    console.error(err);
+    toast("Order failed: " + err.message, "error");
+    btn.disabled = false;
+    btn.textContent = `✅ Order Place करें (₹${total})`;
+  }
 }
 
 /* ============================================================
@@ -498,108 +675,7 @@ async function loadPaymentSettings(){
 }
 
 /* ============================================================
-   ORDER FLOW
-   ============================================================ */
-function openOrder(p){
-  currentOrderItem = p;
-  const imgUrl = p.img ? (p.img.startsWith("http") || p.img.startsWith("data:") ? p.img : IMG_BASE + p.img) : "";
-  const qrHtml = paymentSettings.qrCode
-    ? `<div class="qr-section">
-        <h4>💳 Payment / भुगतान</h4>
-        <img src="${paymentSettings.qrCode}" alt="QR" class="qr-img">
-        ${paymentSettings.upiId ? `<div>UPI ID: <span class="upi-box">${paymentSettings.upiId}</span></div>` : ""}
-        <p style="font-size:.8rem;color:#7a6b5c;margin-top:8px">QR scan करें या UPI ID पर pay करें। Payment के बाद screenshot optional है।</p>
-      </div>` : "";
-
-  document.getElementById("orderContent").innerHTML = `
-    <h2>🛒 Order करें</h2>
-    <p class="subtitle">नीचे details भरें — हम WhatsApp पर confirm करेंगे</p>
-    <div class="order-product">
-      <div class="op-pic">${imgUrl ? `<img src="${imgUrl}" alt="">` : (p.emoji||"🫙")}</div>
-      <div class="op-info">
-        <h4>${p.name}</h4>
-        <div class="pr">₹${p.price} <span style="font-size:.8rem;color:#999;font-weight:400">/ 450g</span></div>
-      </div>
-    </div>
-    <form id="orderForm" onsubmit="submitOrder(event)">
-      <div class="form-group"><label>आपका नाम *</label><input type="text" name="customerName" required placeholder="Full name"></div>
-      <div class="form-row">
-        <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required pattern="[0-9]{10}" placeholder="10 digit mobile" maxlength="10"></div>
-        <div class="form-group"><label>Quantity *</label><input type="number" name="qty" required min="1" max="20" value="1" id="qtyInput" onchange="updateTotal()"></div>
-      </div>
-      <div class="form-group"><label>पूरा Address *</label><textarea name="address" required placeholder="House, Street, Area, City, Pincode"></textarea></div>
-      <div class="form-group"><label>Note (optional)</label><input type="text" name="note" placeholder="कोई special instruction"></div>
-      <div class="total-row"><span>Total:</span><span class="amt" id="totalAmt">₹${p.price}</span></div>
-      ${qrHtml}
-      <button type="submit" class="btn green" style="width:100%;margin-top:18px" id="submitBtn">✅ Order Place करें</button>
-    </form>`;
-  document.getElementById("orderModal").classList.add("active");
-  document.body.style.overflow = "hidden";
-}
-
-function updateTotal(){
-  if (!currentOrderItem) return;
-  const qty = parseInt(document.getElementById("qtyInput").value) || 1;
-  document.getElementById("totalAmt").textContent = "₹" + (currentOrderItem.price * qty);
-}
-
-async function submitOrder(e){
-  e.preventDefault();
-  const btn = document.getElementById("submitBtn");
-  btn.disabled = true;
-  btn.textContent = "⏳ Placing order...";
-
-  const fd = new FormData(e.target);
-  const qty = parseInt(fd.get("qty"));
-  const total = currentOrderItem.price * qty;
-  const orderData = {
-    customerName: fd.get("customerName").trim(),
-    phone: fd.get("phone").trim(),
-    address: fd.get("address").trim(),
-    note: fd.get("note").trim(),
-    items: [{ name: currentOrderItem.name, hi: currentOrderItem.hi||"", price: currentOrderItem.price, qty, emoji: currentOrderItem.emoji||"🫙" }],
-    total,
-    status: "pending"
-  };
-
-  try {
-    let orderId;
-    if (firebaseReady){
-      const ref = db.ref('orders').push();
-      await ref.set({
-        ...orderData,
-        createdAt: firebase.database.ServerValue.TIMESTAMP
-      });
-      orderId = ref.key.slice(-6).toUpperCase();
-    } else {
-      orderId = "LOCAL" + Date.now().toString().slice(-6);
-      const orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
-      orders.push({ id: orderId, ...orderData, createdAt: Date.now() });
-      localStorage.setItem("mindo_orders", JSON.stringify(orders));
-    }
-
-    const waMsg = encodeURIComponent(
-      `Namaste Mindo! Order placed\n\n👤 ${orderData.customerName}\n📞 ${orderData.phone}\n📦 ${orderData.items[0].name} x ${qty}\n💰 Total: ₹${total}\n📍 ${orderData.address}\n\nOrder ID: ${orderId}`
-    );
-    document.getElementById("orderContent").innerHTML = `
-      <div class="success-box">
-        <div class="check">✅</div>
-        <h3>Order Place हो गया!</h3>
-        <p>हम जल्द ही WhatsApp/Call पर confirm करेंगे।</p>
-        <div class="oid">Order ID: ${orderId}</div>
-        <p style="font-size:.85rem;margin-top:16px">Turant confirmation के लिए WhatsApp पर message भेजें:</p>
-        <a class="btn green" href="https://wa.me/${PHONE}?text=${waMsg}" target="_blank" style="margin-top:8px">💬 WhatsApp पर Confirm करें</a>
-      </div>`;
-  } catch(err){
-    console.error(err);
-    toast("Order failed: " + err.message, "error");
-    btn.disabled = false;
-    btn.textContent = "✅ Order Place करें";
-  }
-}
-
-/* ============================================================
-   ADMIN PANEL (Firebase Auth)
+   ADMIN PANEL (Auth & Logic)
    ============================================================ */
 function openAdmin(){
   document.getElementById("adminModal").classList.add("active");
@@ -635,10 +711,7 @@ function adminLogin(e){
   btn.textContent = "⏳ Checking...";
 
   auth.signInWithEmailAndPassword(email, pass)
-    .then(() => {
-      // सफलता का मैसेज onAuthStateChanged संभालेगा
-      toast("Welcome, Admin! 👋", "success");
-    })
+    .then(() => toast("Welcome, Admin! 👋", "success"))
     .catch(err => {
       toast("Login Failed: " + err.message, "error");
       btn.disabled = false;
@@ -682,9 +755,7 @@ async function renderOrdersPanel(panel){
       const data = snapshot.val() || {};
       orders = Object.keys(data).map(key => ({ id: key, ...data[key] }));
       orders.sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
-    } catch(e){
-      toast("Error loading orders. Check rules.", "error");
-    }
+    } catch(e){ toast("Error loading orders.", "error"); }
   } else {
     orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
     orders.reverse();
@@ -708,7 +779,7 @@ function renderOrderCard(o){
   const date = new Date(o.createdAt || Date.now());
   const dateStr = date.toLocaleString("en-IN", { day:"2-digit", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit" });
   const idShort = (o.id||"").slice(-6).toUpperCase();
-  const itemsHtml = (o.items||[]).map(it => `${it.emoji||"🫙"} ${it.name} × ${it.qty} = ₹${it.price*it.qty}`).join("<br>");
+  const itemsHtml = (o.items||[]).map(it => `🔸 ${it.name} × ${it.qty} = ₹${it.price*it.qty}`).join("<br>");
   const isDel = o.status === "delivered";
 
   return `
@@ -780,7 +851,7 @@ function renderProductsPanel(panel){
           <button class="icon-btn edit" onclick="openProductForm(${i})" title="Edit">✏️</button>
           <button class="icon-btn" onclick="deleteProduct(${i})" title="Delete">🗑️</button>
         </div>
-      </div>`).join("") : '<div class="empty-state"><div class="ico">📦</div>कोई product नहीं है। "Add Product" दबाकर अपना पहला प्रोडक्ट जोड़ें।</div>'}
+      </div>`).join("") : '<div class="empty-state"><div class="ico">📦</div>कोई product नहीं है।</div>'}
     <div id="productFormArea"></div>`;
 }
 
@@ -867,10 +938,7 @@ async function saveProduct(e, index){
       if (index >= 0 && products[index].id){
         await db.ref('products/' + products[index].id).update(data);
       } else {
-        await db.ref('products').push({
-          ...data,
-          createdAt: firebase.database.ServerValue.TIMESTAMP
-        });
+        await db.ref('products').push({ ...data, createdAt: firebase.database.ServerValue.TIMESTAMP });
       }
     }
     
@@ -878,7 +946,6 @@ async function saveProduct(e, index){
     else products.push({ id:"local_"+Date.now(), ...data });
     
     localStorage.setItem("mindo_products_new", JSON.stringify(products));
-
     toast("✅ Saved", "success");
     renderProducts();
     renderAdminPanel();
@@ -893,7 +960,6 @@ async function deleteProduct(index){
     }
     products.splice(index, 1);
     localStorage.setItem("mindo_products_new", JSON.stringify(products));
-
     toast("🗑️ Deleted");
     renderProducts();
     renderAdminPanel();
@@ -963,7 +1029,6 @@ function adminLogout(){
 function closeModal(id){
   document.getElementById(id).classList.remove("active");
   document.body.style.overflow = "";
-  if (id === "orderModal") currentOrderItem = null;
 }
 
 function toast(msg, type = ""){
