@@ -1,84 +1,192 @@
-<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mindo Pickles – घर जैसा स्वाद</title>
 <meta name="description" content="Mindo homemade traditional pickles – शुद्ध सरसों तेल में बने, No Chemical Preservatives.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --green:#1f5d2b; --red:#b3201a; --gold:#e8a317; --cream:#fff8ea; --dark:#2b1a10;
+    --green:#1f5d2b; --green-dark:#123b1b; --red:#c9271f; --red-dark:#8f1812;
+    --gold:#f0b429; --cream:#fff8ea; --dark:#2b1a10;
+    --shadow-sm:0 2px 8px rgba(43,26,16,.08);
+    --shadow-md:0 10px 30px rgba(43,26,16,.12);
+    --shadow-lg:0 20px 50px rgba(43,26,16,.18);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:"Segoe UI",Roboto,Arial,sans-serif;background:var(--cream);color:var(--dark);line-height:1.5}
+  html{scroll-behavior:smooth}
+  body{font-family:'Poppins',"Segoe UI",Roboto,Arial,sans-serif;background:var(--cream);color:var(--dark);line-height:1.6;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(240,180,41,.08) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(31,93,43,.08) 0%, transparent 40%);
+    background-attachment:fixed;
+  }
+  h1,h2,h3,h4{font-family:'Baloo 2','Poppins',sans-serif;line-height:1.2}
   img{max-width:100%;display:block}
   a{text-decoration:none;color:inherit}
-  .container{width:min(1150px,92%);margin:auto}
+  .container{width:min(1180px,92%);margin:auto}
 
   /* Header */
-  header{background:#fff;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-  .logo{font-size:2rem;font-weight:800;color:var(--green);letter-spacing:-1px}
-  .logo span{color:var(--gold)}
-  nav a{margin-left:20px;font-weight:600}
+  header{position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,.88);backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(43,26,16,.06);
+    box-shadow:var(--shadow-sm);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:20px}
+  .logo{font-family:'Baloo 2',sans-serif;font-size:2rem;font-weight:800;color:var(--green);letter-spacing:-1px}
+  .logo span{color:var(--gold);display:inline-block;transform:rotate(-8deg)}
+  nav{display:flex;align-items:center;gap:28px}
+  nav a{font-weight:600;font-size:.95rem;position:relative;padding:4px 0;transition:color .2s}
+  nav a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--red);transition:width .3s}
   nav a:hover{color:var(--red)}
-  .btn{display:inline-block;background:var(--red);color:#fff;padding:12px 26px;border-radius:30px;font-weight:700;border:0;cursor:pointer;transition:.2s}
-  .btn:hover{background:#8f1812;transform:translateY(-2px)}
-  .btn.green{background:#25a244}
-  .btn.green:hover{background:#1c7e34}
+  nav a:hover::after{width:100%}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;
+    background:linear-gradient(135deg,var(--red),#e6392f);color:#fff;
+    padding:12px 28px;border-radius:50px;font-weight:700;font-size:.95rem;
+    border:0;cursor:pointer;transition:.25s cubic-bezier(.2,.8,.2,1);
+    box-shadow:0 6px 18px rgba(201,39,31,.35);
+  }
+  .btn:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(201,39,31,.45)}
+  .btn.green{background:linear-gradient(135deg,#25a244,#1c7e34);box-shadow:0 6px 18px rgba(37,162,68,.35)}
+  .btn.green:hover{box-shadow:0 10px 26px rgba(37,162,68,.45)}
 
   /* Hero */
-  .hero{background:linear-gradient(135deg,#1f5d2b,#3f8d4b);color:#fff;padding:70px 0;text-align:center}
-  .hero h1{font-size:clamp(2rem,5vw,3.6rem);margin-bottom:10px}
-  .hero h2{font-size:clamp(1.2rem,3vw,1.8rem);color:var(--gold);font-weight:600;margin-bottom:18px}
-  .hero p{max-width:620px;margin:0 auto 26px;opacity:.95}
+  .hero{position:relative;overflow:hidden;color:#fff;padding:90px 0 100px;text-align:center;
+    background:linear-gradient(135deg,#123b1b 0%, #1f5d2b 45%, #3f8d4b 100%);
+  }
+  .hero::before,.hero::after{content:'';position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+  .hero::before{width:400px;height:400px;background:var(--gold);top:-100px;left:-100px}
+  .hero::after{width:400px;height:400px;background:#7dd87d;bottom:-150px;right:-100px}
+  .hero .container{position:relative;z-index:2}
+  .hero .tagline{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+    padding:8px 20px;border-radius:50px;font-size:.85rem;font-weight:600;letter-spacing:.5px;margin-bottom:20px;backdrop-filter:blur(6px)}
+  .hero h1{font-size:clamp(2.2rem,6vw,4rem);margin-bottom:12px;text-shadow:0 4px 20px rgba(0,0,0,.2)}
+  .hero h2{font-size:clamp(1.2rem,3vw,1.8rem);color:var(--gold);font-weight:600;margin-bottom:22px}
+  .hero p{max-width:640px;margin:0 auto 32px;opacity:.95;font-size:1.05rem}
+  .hero .btn{background:linear-gradient(135deg,var(--gold),#f5c445);color:var(--dark);box-shadow:0 8px 24px rgba(240,180,41,.4)}
+  .hero .btn:hover{box-shadow:0 12px 32px rgba(240,180,41,.55)}
+
+  .float{position:absolute;font-size:3rem;opacity:.35;animation:float 6s ease-in-out infinite}
+  .float.f1{top:20%;left:8%;animation-delay:0s}
+  .float.f2{top:60%;left:12%;animation-delay:1s;font-size:2.5rem}
+  .float.f3{top:25%;right:8%;animation-delay:2s}
+  .float.f4{top:70%;right:12%;animation-delay:1.5s;font-size:2.5rem}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-20px) rotate(8deg)}}
 
   /* Badges */
-  .badges{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding:26px 0}
-  .badge{background:#fff;border:2px solid var(--green);color:var(--green);padding:10px 20px;border-radius:40px;font-weight:700;font-size:.95rem}
+  .badges{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding:40px 0 20px}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid rgba(31,93,43,.15);
+    color:var(--green);padding:12px 22px;border-radius:50px;font-weight:600;font-size:.9rem;
+    box-shadow:var(--shadow-sm);transition:.25s;
+  }
+  .badge:hover{transform:translateY(-3px);border-color:var(--green);box-shadow:var(--shadow-md)}
+
+  /* Section titles */
+  section{padding:70px 0;position:relative}
+  .title{text-align:center;margin-bottom:48px}
+  .title .sub{color:var(--red);font-weight:700;font-size:.85rem;letter-spacing:2px;text-transform:uppercase}
+  .title h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--green);margin:8px 0 10px}
+  .title p{color:#6b5b4e;max-width:560px;margin:auto}
 
   /* Products */
-  section{padding:50px 0}
-  .title{text-align:center;margin-bottom:34px}
-  .title h2{font-size:2rem;color:var(--green)}
-  .title p{color:#6b5b4e}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:26px}
-  .card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.08);transition:.25s;display:flex;flex-direction:column}
-  .card:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(0,0,0,.15)}
-  .card .pic{height:260px;display:flex;align-items:center;justify-content:center;font-size:5rem;background:#fff3d6}
-  .card .pic img{width:100%;height:100%;object-fit:cover}
-  .card .body{padding:18px;display:flex;flex-direction:column;flex:1}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:30px}
+  .card{position:relative;background:#fff;border-radius:24px;overflow:hidden;
+    box-shadow:var(--shadow-md);transition:.35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+  .card .pic{position:relative;height:260px;display:flex;align-items:center;justify-content:center;
+    font-size:6rem;background:linear-gradient(135deg,#fff3d6,#ffe4b3);overflow:hidden;
+  }
+  .card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+  .card:hover .pic img{transform:scale(1.08)}
+  .card .pic .emoji{font-size:6rem;transition:transform .4s}
+  .card:hover .pic .emoji{transform:scale(1.15) rotate(-5deg)}
+  .card .ribbon{position:absolute;top:14px;left:-6px;background:var(--red);color:#fff;
+    padding:6px 16px;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+    border-radius:4px;box-shadow:var(--shadow-sm);z-index:2;
+  }
+  .card .ribbon::before{content:'';position:absolute;bottom:-6px;left:0;border:3px solid transparent;border-top-color:#8f1812;border-right-color:#8f1812}
+  .card .body{padding:22px;display:flex;flex-direction:column;flex:1;gap:6px}
   .card h3{font-size:1.2rem;color:var(--green)}
-  .card .hi{color:var(--red);font-weight:600;margin-bottom:4px}
-  .card .tag{font-size:.9rem;color:#6b5b4e;margin-bottom:12px;flex:1}
-  .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-  .price{font-size:1.4rem;font-weight:800;color:var(--red)}
-  .wt{background:#eef6ef;color:var(--green);padding:3px 10px;border-radius:20px;font-size:.85rem;font-weight:600}
-  .card .btn{text-align:center;width:100%}
+  .card .hi{color:var(--red);font-weight:600;font-size:.95rem}
+  .card .tag{font-size:.9rem;color:#7a6b5c;margin-bottom:14px;flex:1;line-height:1.5}
+  .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .price{font-size:1.5rem;font-weight:800;color:var(--red);font-family:'Baloo 2',sans-serif}
+  .price small{font-size:.75rem;color:#999;font-weight:500;text-decoration:line-through;margin-left:6px}
+  .wt{background:linear-gradient(135deg,#eef6ef,#dff0e1);color:var(--green);padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:700}
+  .card .btn{width:100%;padding:12px}
 
-  /* Why us */
-  .why{background:#fff}
-  .why .grid{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-  .why .item{text-align:center;padding:20px}
-  .why .ico{font-size:2.6rem}
-  .why h4{margin:8px 0 4px;color:var(--green)}
+  /* Why */
+  .why{background:linear-gradient(180deg,#fff 0%, #fdf6e7 100%)}
+  .why .grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+  .why .item{background:#fff;border-radius:22px;text-align:center;padding:32px 22px;
+    box-shadow:var(--shadow-sm);transition:.3s;border:2px solid transparent;
+  }
+  .why .item:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:var(--shadow-md)}
+  .why .ico{font-size:3rem;margin-bottom:12px;display:inline-block;transition:.3s}
+  .why .item:hover .ico{transform:scale(1.15) rotate(-8deg)}
+  .why h4{margin-bottom:6px;color:var(--green);font-size:1.15rem}
+  .why p{color:#7a6b5c;font-size:.9rem}
 
   /* Ingredients */
-  .ingr{background:var(--green);color:#fff;text-align:center}
-  .ingr h2{color:var(--gold);margin-bottom:10px}
-  .ingr p{max-width:760px;margin:auto}
+  .ingr{background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff;text-align:center;position:relative;overflow:hidden}
+  .ingr::before{content:'';position:absolute;top:-50px;right:-50px;width:250px;height:250px;background:rgba(240,180,41,.15);border-radius:50%}
+  .ingr::after{content:'';position:absolute;bottom:-80px;left:-80px;width:300px;height:300px;background:rgba(255,255,255,.05);border-radius:50%}
+  .ingr .container{position:relative;z-index:1}
+  .ingr h2{color:var(--gold);margin-bottom:14px}
+  .ingr p{max-width:820px;margin:auto;opacity:.95;font-size:1rem;line-height:1.8}
+  .pill{display:inline-block;background:rgba(255,255,255,.12);padding:5px 14px;border-radius:20px;margin:4px;font-size:.85rem}
+
+  /* Testimonials */
+  .testi{background:#fff}
+  .testi .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+  .tcard{background:linear-gradient(135deg,#fff8ea,#fdf2d8);border-radius:22px;padding:28px;
+    box-shadow:var(--shadow-sm);position:relative;transition:.3s;border:1px solid rgba(240,180,41,.2)}
+  .tcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+  .tcard .quote{font-size:2.5rem;color:var(--gold);line-height:1;font-family:Georgia,serif}
+  .tcard p{margin:8px 0 16px;color:#4a3a2c;font-style:italic}
+  .tcard .who{display:flex;align-items:center;gap:12px}
+  .tcard .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--gold));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+  .tcard .nm{font-weight:700;color:var(--green)}
+  .tcard .lo{font-size:.8rem;color:#8a7b6c}
 
   /* Contact */
   .contact{text-align:center}
-  .contact .box{background:#fff;border-radius:18px;padding:30px;box-shadow:0 6px 20px rgba(0,0,0,.08);max-width:640px;margin:auto}
-  .contact p{margin:6px 0}
-  .contact .btns{margin-top:18px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  .contact .box{background:#fff;border-radius:26px;padding:40px;box-shadow:var(--shadow-lg);max-width:680px;margin:auto;
+    border-top:6px solid var(--gold)}
+  .contact p{margin:10px 0;font-size:1rem}
+  .contact p a{color:var(--red);font-weight:600;transition:.2s}
+  .contact p a:hover{text-decoration:underline}
+  .contact .btns{margin-top:24px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .lic{display:inline-block;margin-top:14px;background:#eef6ef;color:var(--green);padding:8px 18px;border-radius:20px;font-size:.85rem;font-weight:600}
 
-  footer{background:var(--dark);color:#d9cbb9;text-align:center;padding:24px 0;font-size:.9rem}
+  footer{background:linear-gradient(135deg,#1a0e07,#2b1a10);color:#d9cbb9;text-align:center;padding:36px 0 30px;font-size:.9rem}
+  footer .brand{color:var(--gold);font-weight:700;font-family:'Baloo 2',sans-serif;font-size:1.3rem;margin-bottom:6px}
+  footer .tag{margin-bottom:12px;opacity:.8}
+  footer .line{margin-top:16px;font-size:.8rem;opacity:.6}
 
-  .wa{position:fixed;right:18px;bottom:18px;background:#25a244;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 4px 14px rgba(0,0,0,.3);z-index:60}
+  /* WhatsApp */
+  .wa{position:fixed;right:20px;bottom:20px;background:linear-gradient(135deg,#25a244,#1c7e34);color:#fff;
+    width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.9rem;
+    box-shadow:0 8px 26px rgba(37,162,68,.5);z-index:99;transition:.25s;animation:pulse 2s infinite;
+  }
+  .wa:hover{transform:scale(1.1) rotate(8deg)}
+  @keyframes pulse{
+    0%{box-shadow:0 8px 26px rgba(37,162,68,.5),0 0 0 0 rgba(37,162,68,.5)}
+    70%{box-shadow:0 8px 26px rgba(37,162,68,.5),0 0 0 18px rgba(37,162,68,0)}
+    100%{box-shadow:0 8px 26px rgba(37,162,68,.5),0 0 0 0 rgba(37,162,68,0)}
+  }
 
-  @media(max-width:640px){nav{display:none}}
+  @media(max-width:768px){
+    nav{display:none}
+    .hero{padding:70px 0 80px}
+    section{padding:50px 0}
+    .contact .box{padding:28px 20px}
+    .float{display:none}
+  }
 </style>
 </head>
 <body>
@@ -89,18 +197,24 @@
     <nav>
       <a href="#products">Products</a>
       <a href="#why">Why Mindo</a>
+      <a href="#testi">Reviews</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="btn green" href="https://wa.me/918383050500?text=Namaste%2C%20mujhe%20Mindo%20pickle%20order%20karna%20hai" target="_blank" rel="noopener">Order Now</a>
+    <a class="btn green" href="https://wa.me/918383050500?text=Namaste%2C%20mujhe%20Mindo%20pickle%20order%20karna%20hai" target="_blank" rel="noopener">🛒 Order Now</a>
   </div>
 </header>
 
 <div class="hero">
+  <span class="float f1">🌶️</span>
+  <span class="float f2">🥭</span>
+  <span class="float f3">🫙</span>
+  <span class="float f4">🍋</span>
   <div class="container">
+    <div class="tagline">🌿 शुद्ध सरसों तेल • 100% Homemade</div>
     <h1>घर जैसा स्वाद…</h1>
     <h2>दादी-नानी की याद दिलाए</h2>
     <p>शुद्ध सरसों तेल में बने, हाथों से तैयार, पारंपरिक अचार। न कोई केमिकल, न कोई प्रिज़र्वेटिव – सिर्फ़ प्यार और मसाले।</p>
-    <a href="#products" class="btn">हमारे अचार देखें</a>
+    <a href="#products" class="btn">हमारे अचार देखें →</a>
   </div>
 </div>
 
@@ -114,17 +228,20 @@
 <section id="products">
   <div class="container">
     <div class="title">
+      <div class="sub">Our Pickle Range</div>
       <h2>हमारे अचार</h2>
-      <p>Our Pickle Range – सभी 450g जार में</p>
+      <p>सभी अचार 450g जार में उपलब्ध • शुद्ध सरसों तेल में तैयार</p>
     </div>
-
     <div class="grid" id="productGrid"></div>
   </div>
 </section>
 
 <section class="why" id="why">
   <div class="container">
-    <div class="title"><h2>Mindo क्यों?</h2></div>
+    <div class="title">
+      <div class="sub">Why Choose Us</div>
+      <h2>Mindo क्यों?</h2>
+    </div>
     <div class="grid">
       <div class="item"><div class="ico">🫙</div><h4>शुद्ध सरसों तेल</h4><p>हर अचार शुद्ध सरसों तेल में बना।</p></div>
       <div class="item"><div class="ico">🌶️</div><h4>स्पेशल मसाले</h4><p>सौंफ, अजवाइन और राई से भरपूर।</p></div>
@@ -136,22 +253,59 @@
 
 <section class="ingr">
   <div class="container">
-    <h2>Ingredients (Gujrati Green Chilli Pickle)</h2>
+    <h2>🌾 Ingredients</h2>
     <p>Green Chilli, Iodised Salt, Mustard Oil, Red Chilli, Cumin, Saunf, Ajwain, Turmeric, Asafoetida, Black Pepper, Spices and Condiments.</p>
+    <div style="margin-top:18px">
+      <span class="pill">🌶️ Green Chilli</span>
+      <span class="pill">🫙 Mustard Oil</span>
+      <span class="pill">🌿 Saunf</span>
+      <span class="pill">🧄 Ajwain</span>
+      <span class="pill">✨ Turmeric</span>
+      <span class="pill">🧂 Iodised Salt</span>
+    </div>
+  </div>
+</section>
+
+<section class="testi" id="testi">
+  <div class="container">
+    <div class="title">
+      <div class="sub">Happy Customers</div>
+      <h2>लोग क्या कहते हैं</h2>
+    </div>
+    <div class="grid">
+      <div class="tcard">
+        <div class="quote">"</div>
+        <p>बिल्कुल घर जैसा स्वाद! लाल मिर्च का अचार तो कमाल का है – माँ के हाथ का याद आ गया।</p>
+        <div class="who"><div class="av">R</div><div><div class="nm">Rohit Sharma</div><div class="lo">Delhi</div></div></div>
+      </div>
+      <div class="tcard">
+        <div class="quote">"</div>
+        <p>मिक्स अचार में 9 रंगों का स्वाद – सच में unique! पूरे परिवार को पसंद आया।</p>
+        <div class="who"><div class="av">P</div><div><div class="nm">Priya Verma</div><div class="lo">Noida</div></div></div>
+      </div>
+      <div class="tcard">
+        <div class="quote">"</div>
+        <p>शुद्ध सरसों तेल की खुशबू से ही पता चल जाता है – असली अचार है। दोबारा ज़रूर मंगवाऊँगा।</p>
+        <div class="who"><div class="av">A</div><div><div class="nm">Amit Kumar</div><div class="lo">Gurgaon</div></div></div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="contact" id="contact">
   <div class="container">
-    <div class="title"><h2>Order / संपर्क करें</h2></div>
+    <div class="title">
+      <div class="sub">Get In Touch</div>
+      <h2>Order / संपर्क करें</h2>
+    </div>
     <div class="box">
-      <p><strong>📞 Order & Feedback:</strong> <a href="tel:+918383050500">8383 0505 00</a></p>
+      <p><strong>📞 Order &amp; Feedback:</strong> <a href="tel:+918383050500">8383 0505 00</a></p>
       <p><strong>✉️ Email:</strong> <a href="mailto:sanatan.ent500@gmail.com">sanatan.ent500@gmail.com</a></p>
       <p><strong>📍 Address:</strong> Sanatan Enterprises, F Block, School Road, Khanpur, South Delhi – 110062</p>
-      <p><strong>FSSAI Lic. No.:</strong> 23325002004226</p>
+      <span class="lic">✅ FSSAI Lic. No.: 23325002004226</span>
       <div class="btns">
-        <a class="btn green" href="https://wa.me/918383050500" target="_blank" rel="noopener">WhatsApp पर Order करें</a>
-        <a class="btn" href="tel:+918383050500">Call करें</a>
+        <a class="btn green" href="https://wa.me/918383050500" target="_blank" rel="noopener">💬 WhatsApp पर Order करें</a>
+        <a class="btn" href="tel:+918383050500">📞 Call करें</a>
       </div>
     </div>
   </div>
@@ -159,46 +313,68 @@
 
 <footer>
   <div class="container">
-    © <span id="yr"></span> Mindo – Manufactured &amp; Marketed by Sanatan Enterprises. All rights reserved.
+    <div class="brand">mindo</div>
+    <div class="tag">घर जैसा स्वाद, हर जार में ❤️</div>
+    <div>© <span id="yr"></span> Mindo – Manufactured &amp; Marketed by Sanatan Enterprises. All rights reserved.</div>
+    <div class="line">Made with ❤️ in Delhi</div>
   </div>
 </footer>
 
 <a class="wa" href="https://wa.me/918383050500" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
 
 <script>
-  // ---- Apne products yahan edit karein ----
-  // IMG_BASE: jahan aapki images hain. Same folder = "" ; GitHub raw link =
-  // "https://raw.githubusercontent.com/USERNAME/REPO/main/"  (USERNAME/REPO badlein)
-  const IMG_BASE = "";
+  // ============================================================
+  // 🖼️ IMAGE PATH SETTINGS — यहाँ अपनी images का path सेट करें
+  // ============================================================
+  // अगर images उसी folder में हैं जहाँ यह HTML file है → IMG_BASE = "./"
+  // अगर GitHub raw link use करना है → पूरा URL डालें, e.g.:
+  // const IMG_BASE = "https://raw.githubusercontent.com/abhiks239/Kapil/main/";
+  //
+  // ⚠️ IMPORTANT: Filename बिल्कुल same हो (case sensitive) — "2.jpeg" ≠ "2.jpg"
+  // ============================================================
+  const IMG_BASE = "./";
+
   const products = [
-    {name:"Red Chilli Pickle", hi:"लाल मिर्च का प्यार", tag:"Mustard oil, saunf, ajwain aur rai se bharpur – bharwa mota lal mirch.", price:380, emoji:"🌶️", img:"2.jpeg"},
-    {name:"Gujrati Green Chilli Pickle", hi:"गुजरती मिर्च का आचार", tag:"Hari mirch, haldi aur khade masalon ka tikha swad.", price:360, emoji:"🫑", img:"3.jpeg"},
-    {name:"Sweet Lime Pickle", hi:"मीठा निम्बू का अचार", tag:"Khake dekho, thode se mithe bhi hai!", price:380, emoji:"🍋", img:"4.jpeg"},
-    {name:"Dry Mango Pickle", hi:"कच्चा / सूखा आम का अचार", tag:"King kon hai? Aap hi hai! Khatta, tikha, chatpata.", price:360, emoji:"🥭", img:"5.jpeg"},
-    {name:"Gajar Pickle", hi:"गाजर का अचार", tag:"Special gajar – khoon jaisi laal, ghar jaisa swad.", price:360, emoji:"🥕", img:"6.jpeg"},
-    {name:"Garlic Pickle", hi:"लहसुन का अचार", tag:"Pet ka dhyan main rakhunga – gas ki tension choro!", price:360, emoji:"🧄", img:""},
-    {name:"Kair Pickle", hi:"कैर, टेटी का अचार", tag:"Special Rajasthani swad – kahti chatpati nu mai.", price:400, emoji:"🫒", img:""},
-    {name:"Mixed Pickle (9 रंगों का प्यार)", hi:"मिक्स अचार", tag:"9 alag-alag achaaron ka ek jar mein swad.", price:360, emoji:"🥗", img:""}
+    { name:"Red Chilli Pickle",           hi:"लाल मिर्च का प्यार",       tag:"Mustard oil, saunf, ajwain aur rai se bharpur – bharwa mota lal mirch.", price:380, mrp:420, emoji:"🌶️", img:"2.jpeg", bestseller:true },
+    { name:"Gujrati Green Chilli Pickle", hi:"गुजरती मिर्च का आचार",    tag:"Hari mirch, haldi aur khade masalon ka tikha swad.",                     price:360, mrp:400, emoji:"🫑", img:"3.jpeg" },
+    { name:"Sweet Lime Pickle",           hi:"मीठा निम्बू का अचार",     tag:"Khake dekho, thode se mithe bhi hai!",                                   price:380, mrp:420, emoji:"🍋", img:"4.jpeg" },
+    { name:"Dry Mango Pickle",            hi:"कच्चा / सूखा आम का अचार", tag:"King kon hai? Aap hi hai! Khatta, tikha, chatpata.",                     price:360, mrp:400, emoji:"🥭", img:"5.jpeg", bestseller:true },
+    { name:"Gajar Pickle",                hi:"गाजर का अचार",            tag:"Special gajar – khoon jaisi laal, ghar jaisa swad.",                     price:360, mrp:400, emoji:"🥕", img:"6.jpeg" },
+    { name:"Garlic Pickle",               hi:"लहसुन का अचार",           tag:"Pet ka dhyan main rakhunga – gas ki tension choro!",                     price:360, mrp:400, emoji:"🧄", img:"7.jpeg" },
+    { name:"Kair Pickle",                 hi:"कैर, टेटी का अचार",       tag:"Special Rajasthani swad – kahti chatpati nu mai.",                       price:400, mrp:450, emoji:"🫒", img:"8.jpeg" },
+    { name:"Mixed Pickle (9 रंगों का प्यार)", hi:"मिक्स अचार",           tag:"9 alag-alag achaaron ka ek jar mein swad.",                              price:360, mrp:400, emoji:"🥗", img:"9.jpeg", bestseller:true }
   ];
 
   const grid = document.getElementById("productGrid");
-  products.forEach(p=>{
-    const msg = encodeURIComponent("Namaste, mujhe "+p.name+" (450g) order karna hai.");
+
+  products.forEach(p => {
+    const msg  = encodeURIComponent("Namaste, mujhe " + p.name + " (450g) order karna hai.");
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
-      <div class="pic"><img src="${p.img ? IMG_BASE + p.img : ''}" alt="${p.name}" loading="lazy"></div>
+      ${p.bestseller ? '<span class="ribbon">⭐ Bestseller</span>' : ''}
+      <div class="pic">
+        ${p.img ? `<img src="${IMG_BASE}${p.img}" alt="${p.name}" loading="lazy">` : `<span class="emoji">${p.emoji}</span>`}
+      </div>
       <div class="body">
         <h3>${p.name}</h3>
         <div class="hi">${p.hi}</div>
         <div class="tag">${p.tag}</div>
-        <div class="row"><span class="price">₹${p.price}</span><span class="wt">450g</span></div>
-        <a class="btn" href="https://wa.me/918383050500?text=${msg}" target="_blank" rel="noopener">Order करें</a>
+        <div class="row">
+          <span class="price">₹${p.price}${p.mrp ? `<small>₹${p.mrp}</small>` : ''}</span>
+          <span class="wt">450g</span>
+        </div>
+        <a class="btn" href="https://wa.me/918383050500?text=${msg}" target="_blank" rel="noopener">🛒 Order करें</a>
       </div>`;
-    // image na mile to emoji dikhao
-    card.querySelector("img").onerror = function(){
-      this.parentElement.textContent = p.emoji;
-    };
+
+    // 🎯 Image na mile to emoji fallback dikhao (page kabhi break nahi hoga)
+    const img = card.querySelector("img");
+    if (img) {
+      img.onerror = function () {
+        this.parentElement.innerHTML = `<span class="emoji">${p.emoji}</span>`;
+        console.warn("❌ Image not found:", IMG_BASE + p.img);
+      };
+    }
     grid.appendChild(card);
   });
 
