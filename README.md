@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
@@ -370,20 +371,6 @@ const IMG_BASE = "./";
 const PHONE = "918383050500";
 
 /* ============================================================
-   📦 DEFAULT PRODUCTS (अगर डेटाबेस खाली हो)
-   ============================================================ */
-const DEFAULT_PRODUCTS = [
-  { name:"Red Chilli Pickle", hi:"लाल मिर्च का प्यार", tag:"Mustard oil, saunf, ajwain aur rai se bharpur – bharwa mota lal mirch.", price:380, mrp:420, emoji:"🌶️", img:"2.jpeg", bestseller:true },
-  { name:"Gujrati Green Chilli Pickle", hi:"गुजरती मिर्च का आचार", tag:"Hari mirch, haldi aur khade masalon ka tikha swad.", price:360, mrp:400, emoji:"🫑", img:"3.jpeg" },
-  { name:"Sweet Lime Pickle", hi:"मीठा निम्बू का अचार", tag:"Khake dekho, thode se mithe bhi hai!", price:380, mrp:420, emoji:"🍋", img:"4.jpeg" },
-  { name:"Dry Mango Pickle", hi:"कच्चा / सूखा आम का अचार", tag:"King kon hai? Aap hi hai! Khatta, tikha, chatpata.", price:360, mrp:400, emoji:"🥭", img:"5.jpeg", bestseller:true },
-  { name:"Gajar Pickle", hi:"गाजर का अचार", tag:"Special gajar – khoon jaisi laal, ghar jaisa swad.", price:360, mrp:400, emoji:"🥕", img:"6.jpeg" },
-  { name:"Garlic Pickle", hi:"लहसुन का अचार", tag:"Pet ka dhyan main rakhunga – gas ki tension choro!", price:360, mrp:400, emoji:"🧄", img:"7.jpeg" },
-  { name:"Kair Pickle", hi:"कैर, टेटी का अचार", tag:"Special Rajasthani swad – kahti chatpati nu mai.", price:400, mrp:450, emoji:"🫒", img:"8.jpeg" },
-  { name:"Mixed Pickle (9 रंगों का प्यार)", hi:"मिक्स अचार", tag:"9 alag-alag achaaron ka ek jar mein swad.", price:360, mrp:400, emoji:"🥗", img:"9.jpeg", bestseller:true }
-];
-
-/* ============================================================
    STATE & INIT
    ============================================================ */
 let db = null;
@@ -393,7 +380,7 @@ let paymentSettings = { qrCode:"", upiId:"" };
 let currentOrderItem = null;
 let isAdmin = false;
 let adminTab = "orders";
-let showAllProducts = false; // नया: See All के लिए
+let showAllProducts = false;
 
 async function init(){
   try {
@@ -414,7 +401,7 @@ async function init(){
 }
 
 /* ============================================================
-   PRODUCTS
+   PRODUCTS (Default products removed)
    ============================================================ */
 async function loadProducts(){
   if (firebaseReady){
@@ -423,21 +410,28 @@ async function loadProducts(){
       const data = snapshot.val();
       if (data) {
         products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-        return;
+      } else {
+        products = []; // Firebase खाली है
       }
-    } catch(e){ console.warn("Products load failed:", e); }
+    } catch(e){ 
+      console.warn("Products load failed:", e); 
+      products = [];
+    }
+  } else {
+    // Fallback to LocalStorage
+    const cached = localStorage.getItem("mindo_products");
+    products = cached ? JSON.parse(cached) : [];
   }
-  products = DEFAULT_PRODUCTS.map(p => ({ ...p }));
 }
 
 function renderProducts(){
   const grid = document.getElementById("productGrid");
+  
   if (!products.length){
-    grid.innerHTML = '<div class="empty-state"><div class="ico">🫙</div>No products available</div>';
+    grid.innerHTML = '<div class="empty-state" style="grid-column: 1/-1;"><div class="ico">🫙</div>अभी कोई प्रोडक्ट नहीं है। कृपया एडमिन पैनल से प्रोडक्ट जोड़ें।</div>';
     return;
   }
 
-  // अगर showAllProducts false है, तो सिर्फ 5 दिखाओ
   const displayProducts = showAllProducts ? products : products.slice(0, 5);
 
   let html = displayProducts.map((p) => {
@@ -461,7 +455,6 @@ function renderProducts(){
       </div>`;
   }).join("");
 
-  // अगर 5 से ज्यादा प्रोडक्ट हैं और showAllProducts false है, तो See All कार्ड जोड़ें
   if (!showAllProducts && products.length > 5) {
     html += `
       <div class="card see-all-card" onclick="showAllProducts = true; renderProducts();">
@@ -602,7 +595,6 @@ function openAdmin(){
   else renderAdminLogin();
 }
 
-// 🛠️ FIX: फॉर्म HTML गलत था, उसे सही कर दिया गया है
 function renderAdminLogin(){
   document.getElementById("adminContent").innerHTML = `
     <h2>🔐 Admin Panel</h2>
@@ -749,7 +741,6 @@ function renderProductsPanel(panel){
     <div class="admin-header">
       <h3>🛍️ Products (${products.length})</h3>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        ${products.length === 0 ? `<button class="btn sm" onclick="seedProducts()">🌱 Seed Defaults</button>` : ''}
         <button class="btn green sm" onclick="openProductForm()">➕ Add Product</button>
       </div>
     </div>
@@ -763,15 +754,13 @@ function renderProductsPanel(panel){
           <button class="icon-btn edit" onclick="openProductForm(${i})" title="Edit">✏️</button>
           <button class="icon-btn" onclick="deleteProduct(${i})" title="Delete">🗑️</button>
         </div>
-      </div>`).join("") : '<div class="empty-state"><div class="ico">📦</div>कोई product नहीं। "Seed Defaults" दबाएँ।</div>'}
+      </div>`).join("") : '<div class="empty-state"><div class="ico">📦</div>कोई product नहीं है। "Add Product" दबाकर अपना पहला प्रोडक्ट जोड़ें।</div>'}
     <div id="productFormArea"></div>`;
 }
 
-// 📸 FIX: इमेज अपलोड और प्रीव्यू का ऑप्शन जोड़ा गया है
 function openProductForm(index = -1){
   const p = index >= 0 ? products[index] : { name:"", hi:"", tag:"", price:0, mrp:0, emoji:"🫙", img:"", bestseller:false };
   
-  // अगर पुरानी इमेज है तो उसका url निकालें
   let imgPreview = "";
   if (p.img) {
     const imgUrl = p.img.startsWith("http") || p.img.startsWith("data:") ? p.img : IMG_BASE + p.img;
@@ -807,7 +796,6 @@ function openProductForm(index = -1){
     </div>`;
 }
 
-// 📸 इमेज को कंप्रेस करके Base64 में बदलने का फंक्शन
 function handleImageUpload(e) {
   const file = e.target.files[0];
   if (!file) return;
@@ -816,7 +804,6 @@ function handleImageUpload(e) {
   reader.onload = function(event) {
     const img = new Image();
     img.onload = function() {
-      // Canvas का उपयोग करके इमेज को छोटा (कंप्रेस) करें ताकि डेटाबेस फुल न हो
       const canvas = document.createElement('canvas');
       const MAX_WIDTH = 500;
       const scaleSize = MAX_WIDTH / img.width;
@@ -825,7 +812,7 @@ function handleImageUpload(e) {
       const ctx = canvas.getContext('2d');
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       
-      const base64String = canvas.toDataURL('image/jpeg', 0.7); // 70% quality
+      const base64String = canvas.toDataURL('image/jpeg', 0.7);
       
       document.getElementById('imgBase64Input').value = base64String;
       document.getElementById('imagePreview').innerHTML = `<img src="${base64String}" style="max-height:100px;border-radius:8px;margin-top:10px;border:1px solid #ddd">`;
@@ -860,9 +847,13 @@ async function saveProduct(e, index){
         });
       }
     }
-    // local update
+    
+    // Local update
     if (index >= 0) products[index] = { ...products[index], ...data };
     else products.push({ id:"local_"+Date.now(), ...data });
+    
+    // Save to localStorage as fallback
+    localStorage.setItem("mindo_products", JSON.stringify(products));
 
     toast("✅ Saved", "success");
     renderProducts();
@@ -877,26 +868,14 @@ async function deleteProduct(index){
       await db.ref('products/' + products[index].id).remove();
     }
     products.splice(index, 1);
+    
+    // Save to localStorage as fallback
+    localStorage.setItem("mindo_products", JSON.stringify(products));
+
     toast("🗑️ Deleted");
     renderProducts();
     renderAdminPanel();
   } catch(err){ toast("Delete failed: " + err.message, "error"); }
-}
-
-async function seedProducts(){
-  if (!firebaseReady){ toast("Firebase not configured", "error"); return; }
-  try {
-    for (const p of DEFAULT_PRODUCTS){
-      await db.ref('products').push({
-        ...p,
-        createdAt: firebase.database.ServerValue.TIMESTAMP
-      });
-    }
-    toast("🌱 " + DEFAULT_PRODUCTS.length + " products added", "success");
-    await loadProducts();
-    renderProducts();
-    renderAdminPanel();
-  } catch(err){ toast("Seed failed: " + err.message, "error"); }
 }
 
 /* ---- Payment Admin ---- */
