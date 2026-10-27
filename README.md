@@ -1,1050 +1,1773 @@
-<html lang="hi">
+```html
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mindo Pickles – घर जैसा स्वाद</title>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --green:#1f5d2b; --green-dark:#123b1b; --red:#c9271f; --gold:#f0b429;
-    --cream:#fff8ea; --dark:#2b1a10;
-    --shadow-sm:0 2px 8px rgba(43,26,16,.08);
-    --shadow-md:0 10px 30px rgba(43,26,16,.12);
-    --shadow-lg:0 20px 50px rgba(43,26,16,.18);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:'Poppins',sans-serif;background:var(--cream);color:var(--dark);line-height:1.6;
-    background-image:
-      radial-gradient(circle at 15% 20%, rgba(240,180,41,.08) 0%, transparent 40%),
-      radial-gradient(circle at 85% 80%, rgba(31,93,43,.08) 0%, transparent 40%);
-    background-attachment:fixed;
-  }
-  h1,h2,h3,h4{font-family:'Baloo 2',sans-serif;line-height:1.2}
-  img{max-width:100%;display:block}
-  a{text-decoration:none;color:inherit}
-  .container{width:min(1180px,92%);margin:auto}
-
-  /* Header */
-  header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(43,26,16,.06);box-shadow:var(--shadow-sm)}
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:20px}
-  .logo{font-family:'Baloo 2',sans-serif;font-size:2rem;font-weight:800;color:var(--green);letter-spacing:-1px}
-  .logo span{color:var(--gold);display:inline-block;transform:rotate(-8deg)}
-  nav{display:flex;align-items:center;gap:28px}
-  nav a{font-weight:600;font-size:.95rem;position:relative;padding:4px 0;transition:color .2s}
-  nav a:hover{color:var(--red)}
-  .btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;background:linear-gradient(135deg,var(--red),#e6392f);color:#fff;padding:12px 28px;border-radius:50px;font-weight:700;font-size:.95rem;border:0;cursor:pointer;transition:.25s;box-shadow:0 6px 18px rgba(201,39,31,.35);font-family:inherit}
-  .btn:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(201,39,31,.45)}
-  .btn.green{background:linear-gradient(135deg,#25a244,#1c7e34);box-shadow:0 6px 18px rgba(37,162,68,.35)}
-  .btn.ghost{background:transparent;color:var(--green);border:2px solid var(--green);box-shadow:none}
-  .btn.ghost:hover{background:var(--green);color:#fff}
-  .btn.sm{padding:8px 16px;font-size:.85rem}
-  .btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
-
-  /* Hero */
-  .hero{position:relative;overflow:hidden;color:#fff;padding:90px 0 100px;text-align:center;background:linear-gradient(135deg,#123b1b 0%, #1f5d2b 45%, #3f8d4b 100%)}
-  .hero::before,.hero::after{content:'';position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
-  .hero::before{width:400px;height:400px;background:var(--gold);top:-100px;left:-100px}
-  .hero::after{width:400px;height:400px;background:#7dd87d;bottom:-150px;right:-100px}
-  .hero .container{position:relative;z-index:2}
-  .hero .tagline{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);padding:8px 20px;border-radius:50px;font-size:.85rem;font-weight:600;letter-spacing:.5px;margin-bottom:20px;backdrop-filter:blur(6px)}
-  .hero h1{font-size:clamp(2.2rem,6vw,4rem);margin-bottom:12px;text-shadow:0 4px 20px rgba(0,0,0,.2)}
-  .hero h2{font-size:clamp(1.2rem,3vw,1.8rem);color:var(--gold);font-weight:600;margin-bottom:22px}
-  .hero p{max-width:640px;margin:0 auto 32px;opacity:.95;font-size:1.05rem}
-  .hero .btn{background:linear-gradient(135deg,var(--gold),#f5c445);color:var(--dark);box-shadow:0 8px 24px rgba(240,180,41,.4)}
-  .float{position:absolute;font-size:3rem;opacity:.35;animation:float 6s ease-in-out infinite}
-  .float.f1{top:20%;left:8%}
-  .float.f2{top:60%;left:12%;animation-delay:1s;font-size:2.5rem}
-  .float.f3{top:25%;right:8%;animation-delay:2s}
-  .float.f4{top:70%;right:12%;animation-delay:1.5s;font-size:2.5rem}
-  @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-20px) rotate(8deg)}}
-
-  /* Badges & Sections */
-  .badges{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding:40px 0 20px}
-  .badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:2px solid rgba(31,93,43,.15);color:var(--green);padding:12px 22px;border-radius:50px;font-weight:600;font-size:.9rem;box-shadow:var(--shadow-sm);transition:.25s}
-  .badge:hover{transform:translateY(-3px);border-color:var(--green);box-shadow:var(--shadow-md)}
-  section{padding:70px 0}
-  .title{text-align:center;margin-bottom:48px}
-  .title .sub{color:var(--red);font-weight:700;font-size:.85rem;letter-spacing:2px;text-transform:uppercase}
-  .title h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--green);margin:8px 0 10px}
-  .title p{color:#6b5b4e;max-width:560px;margin:auto}
-
-  /* Products */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:30px}
-  .card{position:relative;background:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-md);transition:.35s;display:flex;flex-direction:column}
-  .card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
-  .card .pic{position:relative;height:260px;display:flex;align-items:center;justify-content:center;font-size:6rem;background:linear-gradient(135deg,#fff3d6,#ffe4b3);overflow:hidden}
-  .card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-  .card:hover .pic img{transform:scale(1.08)}
-  .card .pic .emoji{font-size:6rem}
-  .card .ribbon{position:absolute;top:14px;left:-6px;background:var(--red);color:#fff;padding:6px 16px;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:4px;box-shadow:var(--shadow-sm);z-index:2}
-  .card .body{padding:22px;display:flex;flex-direction:column;flex:1;gap:6px}
-  .card h3{font-size:1.2rem;color:var(--green)}
-  .card .hi{color:var(--red);font-weight:600;font-size:.95rem}
-  .card .tag{font-size:.9rem;color:#7a6b5c;margin-bottom:14px;flex:1;line-height:1.5}
-  .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-  .price{font-size:1.5rem;font-weight:800;color:var(--red);font-family:'Baloo 2',sans-serif}
-  .price small{font-size:.75rem;color:#999;font-weight:500;text-decoration:line-through;margin-left:6px}
-  .wt{background:linear-gradient(135deg,#eef6ef,#dff0e1);color:var(--green);padding:4px 12px;border-radius:20px;font-size:.8rem;font-weight:700}
-  .card .btn{width:100%;padding:12px}
-
-  /* See All Card */
-  .see-all-card{display:flex;align-items:center;justify-content:center;background:var(--cream);border:3px dashed var(--gold);cursor:pointer;transition:0.3s}
-  .see-all-card:hover{background:#ffefd0;transform:translateY(-8px)}
-  .see-all-card .inner{text-align:center;padding:20px}
-  .see-all-card .plus{font-size:4rem;color:var(--green);line-height:1;margin-bottom:10px}
-  .see-all-card h3{color:var(--green);font-size:1.4rem}
-
-  /* Extra Sections */
-  .why{background:linear-gradient(180deg,#fff 0%, #fdf6e7 100%)}
-  .why .grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
-  .why .item{background:#fff;border-radius:22px;text-align:center;padding:32px 22px;box-shadow:var(--shadow-sm);transition:.3s;border:2px solid transparent}
-  .why .item:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:var(--shadow-md)}
-  .why .ico{font-size:3rem;margin-bottom:12px}
-  .why h4{margin-bottom:6px;color:var(--green);font-size:1.15rem}
-  .why p{color:#7a6b5c;font-size:.9rem}
-  .ingr{background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff;text-align:center;position:relative;overflow:hidden}
-  .ingr h2{color:var(--gold);margin-bottom:14px}
-  .ingr p{max-width:820px;margin:auto;opacity:.95;line-height:1.8}
-  .testi{background:#fff}
-  .testi .grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-  .tcard{background:linear-gradient(135deg,#fff8ea,#fdf2d8);border-radius:22px;padding:28px;box-shadow:var(--shadow-sm);transition:.3s;border:1px solid rgba(240,180,41,.2)}
-  .tcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-  .tcard .quote{font-size:2.5rem;color:var(--gold);line-height:1;font-family:Georgia,serif}
-  .tcard p{margin:8px 0 16px;color:#4a3a2c;font-style:italic}
-  .tcard .who{display:flex;align-items:center;gap:12px}
-  .tcard .av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--gold));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
-  .tcard .nm{font-weight:700;color:var(--green)}
-  .tcard .lo{font-size:.8rem;color:#8a7b6c}
-
-  /* Contact & Footer */
-  .contact{text-align:center}
-  .contact .box{background:#fff;border-radius:26px;padding:40px;box-shadow:var(--shadow-lg);max-width:680px;margin:auto;border-top:6px solid var(--gold)}
-  .contact p{margin:10px 0}
-  .contact p a{color:var(--red);font-weight:600}
-  .contact .btns{margin-top:24px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .lic{display:inline-block;margin-top:14px;background:#eef6ef;color:var(--green);padding:8px 18px;border-radius:20px;font-size:.85rem;font-weight:600}
-  footer{background:linear-gradient(135deg,#1a0e07,#2b1a10);color:#d9cbb9;text-align:center;padding:36px 0 30px;font-size:.9rem}
-  footer .brand{color:var(--gold);font-weight:700;font-family:'Baloo 2',sans-serif;font-size:1.3rem;margin-bottom:6px}
-  footer .tag{margin-bottom:12px;opacity:.8}
-
-  /* Floating Buttons */
-  .wa{position:fixed;right:20px;bottom:20px;background:linear-gradient(135deg,#25a244,#1c7e34);color:#fff;width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.9rem;box-shadow:0 8px 26px rgba(37,162,68,.5);z-index:99;transition:.25s}
-  .wa:hover{transform:scale(1.1)}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mindo Pickles | घर जैसा स्वाद • 100% Traditional Handcrafted Pickles</title>
   
-  /* Cart Floating Button */
-  .cart-btn-float{position:fixed;right:20px;bottom:95px;background:linear-gradient(135deg,var(--gold),#f5c445);color:var(--dark);width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 8px 26px rgba(240,180,41,.5);z-index:99;transition:.25s;cursor:pointer}
-  .cart-btn-float:hover{transform:scale(1.1)}
-  .cart-badge{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;width:24px;height:24px;border-radius:50%;font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
-
-  .admin-btn{position:fixed;left:16px;bottom:16px;width:36px;height:36px;border-radius:50%;background:rgba(43,26,16,.15);color:rgba(43,26,16,.5);border:0;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:.3s;z-index:98;backdrop-filter:blur(6px)}
-  .admin-btn:hover{background:var(--green);color:#fff;transform:rotate(45deg) scale(1.15)}
-
-  /* Modals & Forms */
-  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);z-index:200;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto}
-  .modal.active{display:flex}
-  .modal-box{background:#fff;border-radius:22px;max-width:560px;width:100%;margin:auto;position:relative;padding:30px;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:popIn .3s}
-  .modal-box.wide{max-width:900px}
-  @keyframes popIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
-  .modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#f3ede3;color:var(--dark);border:0;cursor:pointer;font-size:1.4rem;display:flex;align-items:center;justify-content:center;line-height:1;transition:.2s;z-index:10}
-  .modal-close:hover{background:var(--red);color:#fff}
-  .modal h2{color:var(--green);margin-bottom:6px;font-size:1.6rem}
-  .modal .subtitle{color:#7a6b5c;font-size:.9rem;margin-bottom:20px}
-
-  .form-group{margin-bottom:14px}
-  .form-group label{display:block;font-size:.85rem;font-weight:600;color:var(--dark);margin-bottom:6px}
-  .form-group input,.form-group textarea,.form-group select{width:100%;padding:11px 14px;border:2px solid #e5ddd0;border-radius:10px;font-family:inherit;font-size:.95rem;transition:.2s;background:#fff}
-  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(31,93,43,.1)}
-  .form-group textarea{resize:vertical;min-height:70px}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
-  /* Cart Modal Specific */
-  .cart-item{display:flex;align-items:center;gap:14px;padding:12px 0;border-bottom:1px dashed #e5ddd0}
-  .cart-item:last-child{border-bottom:0}
-  .cart-item .ci-pic{width:60px;height:60px;border-radius:10px;background:#ffe4b3;display:flex;align-items:center;justify-content:center;font-size:2rem;overflow:hidden;flex-shrink:0}
-  .cart-item .ci-pic img{width:100%;height:100%;object-fit:cover}
-  .cart-item .ci-info{flex:1}
-  .cart-item .ci-info h4{font-size:1rem;color:var(--green);margin-bottom:4px}
-  .cart-item .ci-price{font-weight:700;color:var(--red);font-size:.95rem}
-  .qty-controls{display:flex;align-items:center;gap:8px;background:#f3ede3;border-radius:20px;padding:2px 8px}
-  .qty-controls button{background:transparent;border:0;font-size:1.2rem;font-weight:700;color:var(--dark);cursor:pointer;padding:0 4px}
-  .qty-controls span{font-weight:700;font-size:.9rem;min-width:20px;text-align:center}
-  .remove-btn{background:transparent;border:0;color:#ccc;font-size:1.2rem;cursor:pointer;transition:.2s}
-  .remove-btn:hover{color:var(--red)}
-
-  .qr-section{text-align:center;margin-top:20px;padding-top:20px;border-top:2px dashed #e5ddd0}
-  .qr-section h4{color:var(--green);margin-bottom:12px}
-  .qr-img{width:180px;height:180px;margin:0 auto 12px;border-radius:12px;border:3px solid var(--gold);padding:6px;background:#fff;object-fit:contain}
-  .upi-box{background:#fff8ea;padding:10px;border-radius:10px;font-family:monospace;font-size:.95rem;display:inline-block;margin:6px 0;font-weight:600}
-  .total-row{display:flex;justify-content:space-between;padding:14px 0;border-top:2px solid #e5ddd0;margin-top:14px;font-size:1.1rem;font-weight:700}
-  .total-row .amt{color:var(--red);font-family:'Baloo 2',sans-serif;font-size:1.5rem}
+  <!-- Google Fonts: Playfair Display, Plus Jakarta Sans & Rozha One for Indian heritage typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Rozha+One&family=Yatra+One&display=swap" rel="stylesheet">
   
-  .success-box{text-align:center;padding:20px}
-  .success-box .check{font-size:4rem;color:#25a244;margin-bottom:10px}
-  .success-box h3{color:var(--green);margin-bottom:10px;font-size:1.5rem}
-  .success-box .oid{background:#fff8ea;padding:8px 16px;border-radius:10px;font-family:monospace;font-size:.9rem;display:inline-block;margin:10px 0;font-weight:700}
-  .success-box p{color:#7a6b5c;margin-bottom:16px}
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  /* Admin Dashboard */
-  .admin-tabs{display:flex;gap:6px;margin-bottom:20px;border-bottom:2px solid #f3ede3;overflow-x:auto}
-  .admin-tab{padding:10px 18px;background:transparent;border:0;cursor:pointer;font-weight:600;font-size:.9rem;color:#7a6b5c;border-bottom:3px solid transparent;margin-bottom:-2px;transition:.2s;white-space:nowrap;font-family:inherit}
-  .admin-tab.active{color:var(--green);border-bottom-color:var(--green)}
-  .admin-tab:hover{color:var(--green)}
-  .admin-panel{display:none}
-  .admin-panel.active{display:block}
-  .admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:10px;flex-wrap:wrap}
-  .admin-header h3{color:var(--green);font-size:1.15rem}
-  .order-list{display:flex;flex-direction:column;gap:12px;max-height:60vh;overflow-y:auto;padding-right:6px}
-  .order-item{background:#fff8ea;border:2px solid #f3ede3;border-radius:14px;padding:14px;transition:.2s}
-  .order-item.delivered{background:#eef6ef;border-color:#c8e6cc}
-  .order-item .ohead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:8px;flex-wrap:wrap}
-  .order-item .oname{font-weight:700;color:var(--dark);font-size:.95rem}
-  .order-item .ostatus{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px}
-  .ostatus.pending{background:#fff3cd;color:#856404}
-  .ostatus.delivered{background:#d4edda;color:#155724}
-  .order-item .oinfo{font-size:.82rem;color:#6b5b4e;line-height:1.6}
-  .order-item .oitems{background:#fff;padding:8px 10px;border-radius:8px;margin:8px 0;font-size:.8rem;color:#4a3a2c}
-  .order-item .oactions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
-  .product-admin-item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px;background:#fff8ea;border-radius:10px;margin-bottom:8px;border:1px solid #f3ede3}
-  .product-admin-item .pai-info{flex:1;min-width:0}
-  .product-admin-item .pai-name{font-weight:700;color:var(--dark);font-size:.9rem}
-  .product-admin-item .pai-meta{font-size:.78rem;color:#7a6b5c}
-  .product-admin-item .pai-actions{display:flex;gap:6px}
-  .icon-btn{width:32px;height:32px;border-radius:8px;border:0;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:.2s;background:#f3ede3;color:var(--dark)}
-  .icon-btn:hover{background:var(--red);color:#fff}
-  .icon-btn.edit:hover{background:var(--green)}
-  .empty-state{text-align:center;padding:40px 20px;color:#7a6b5c}
-  .empty-state .ico{font-size:3rem;margin-bottom:10px;opacity:.5}
-  .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--dark);color:#fff;padding:12px 24px;border-radius:30px;font-size:.9rem;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.3);z-index:999;transition:.3s;opacity:0}
-  .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-  .toast.error{background:var(--red)}
-  .toast.success{background:#25a244}
-
-  @media(max-width:768px){
-    nav{display:none}
-    .hero{padding:70px 0 80px}
-    section{padding:50px 0}
-    .contact .box{padding:28px 20px}
-    .float{display:none}
-    .form-row{grid-template-columns:1fr}
-    .modal-box{padding:22px 18px}
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="container nav">
-    <a href="#" class="logo">m<span>i</span>ndo</a>
-    <nav>
-      <a href="#products">Products</a>
-      <a href="#why">Why Mindo</a>
-      <a href="#testi">Reviews</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <a class="btn green" href="https://wa.me/918383050500?text=Namaste%2C%20mujhe%20Mindo%20pickle%20order%20karna%20hai" target="_blank" rel="noopener">🛒 Order Now</a>
-  </div>
-</header>
-
-<div class="hero">
-  <span class="float f1">🌶️</span>
-  <span class="float f2">🥭</span>
-  <span class="float f3">🫙</span>
-  <span class="float f4">🍋</span>
-  <div class="container">
-    <div class="tagline">🌿 शुद्ध सरसों तेल • 100% Homemade</div>
-    <h1>घर जैसा स्वाद…</h1>
-    <h2>दादी-नानी की याद दिलाए</h2>
-    <p>शुद्ध सरसों तेल में बने, हाथों से तैयार, पारंपरिक अचार। न कोई केमिकल, न कोई प्रिज़र्वेटिव – सिर्फ़ प्यार और मसाले।</p>
-    <a href="#products" class="btn">हमारे अचार देखें →</a>
-  </div>
-</div>
-
-<div class="container badges">
-  <div class="badge">🌿 100% Natural</div>
-  <div class="badge">🚫 No Chemical Preservatives</div>
-  <div class="badge">🏠 Homemade Traditional Taste</div>
-  <div class="badge">☀️ Sun Dried in Barnis</div>
-</div>
-
-<section id="products">
-  <div class="container">
-    <div class="title">
-      <div class="sub">Our Pickle Range</div>
-      <h2>हमारे अचार</h2>
-      <p>सभी अचार 450g जार में उपलब्ध • शुद्ध सरसों तेल में तैयार</p>
-    </div>
-    <div class="grid" id="productGrid">
-      <div class="empty-state"><div class="ico">⏳</div>Loading products...</div>
-    </div>
-  </div>
-</section>
-
-<!-- Other sections remain same -->
-<section class="why" id="why">
-  <div class="container">
-    <div class="title"><div class="sub">Why Choose Us</div><h2>Mindo क्यों?</h2></div>
-    <div class="grid">
-      <div class="item"><div class="ico">🫙</div><h4>शुद्ध सरसों तेल</h4><p>हर अचार शुद्ध सरसों तेल में बना।</p></div>
-      <div class="item"><div class="ico">🌶️</div><h4>स्पेशल मसाले</h4><p>सौंफ, अजवाइन और राई से भरपूर।</p></div>
-      <div class="item"><div class="ico">🧼</div><h4>Hygienically Handmade</h4><p>साफ़-सफ़ाई के साथ हाथों से तैयार।</p></div>
-      <div class="item"><div class="ico">❤️</div><h4>दादी-नानी की याद</h4><p>वही पुराना घर जैसा स्वाद।</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="ingr">
-  <div class="container">
-    <h2>🌾 Ingredients</h2>
-    <p>Green Chilli, Iodised Salt, Mustard Oil, Red Chilli, Cumin, Saunf, Ajwain, Turmeric, Asafoetida, Black Pepper, Spices and Condiments.</p>
-  </div>
-</section>
-
-<section class="testi" id="testi">
-  <div class="container">
-    <div class="title"><div class="sub">Happy Customers</div><h2>लोग क्या कहते हैं</h2></div>
-    <div class="grid">
-      <div class="tcard"><div class="quote">"</div><p>बिल्कुल घर जैसा स्वाद! लाल मिर्च का अचार तो कमाल का है – माँ के हाथ का याद आ गया।</p><div class="who"><div class="av">R</div><div><div class="nm">Rohit Sharma</div><div class="lo">Delhi</div></div></div></div>
-      <div class="tcard"><div class="quote">"</div><p>मिक्स अचार में 9 रंगों का स्वाद – सच में unique! पूरे परिवार को पसंद आया।</p><div class="who"><div class="av">P</div><div><div class="nm">Priya Verma</div><div class="lo">Noida</div></div></div></div>
-      <div class="tcard"><div class="quote">"</div><p>शुद्ध सरसों तेल की खुशबू से ही पता चल जाता है – असली अचार है। दोबारा ज़रूर मंगवाऊँगा।</p><div class="who"><div class="av">A</div><div><div class="nm">Amit Kumar</div><div class="lo">Gurgaon</div></div></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="contact" id="contact">
-  <div class="container">
-    <div class="title"><div class="sub">Get In Touch</div><h2>Order / संपर्क करें</h2></div>
-    <div class="box">
-      <p><strong>📞 Order &amp; Feedback:</strong> <a href="tel:+918383050500">8383 0505 00</a></p>
-      <p><strong>✉️ Email:</strong> <a href="mailto:sanatan.ent500@gmail.com">sanatan.ent500@gmail.com</a></p>
-      <p><strong>📍 Address:</strong> Sanatan Enterprises, F Block, School Road, Khanpur, South Delhi – 110062</p>
-      <span class="lic">✅ FSSAI Lic. No.: 23325002004226</span>
-      <div class="btns">
-        <a class="btn green" href="https://wa.me/918383050500" target="_blank" rel="noopener">💬 WhatsApp पर Order करें</a>
-        <a class="btn" href="tel:+918383050500">📞 Call करें</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <div class="brand">mindo</div>
-    <div class="tag">घर जैसा स्वाद, हर जार में ❤️</div>
-    <div>© <span id="yr"></span> Mindo – Manufactured &amp; Marketed by Sanatan Enterprises. All rights reserved.</div>
-  </div>
-</footer>
-
-<!-- Floating Buttons -->
-<a class="wa" href="https://wa.me/918383050500" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
-<div class="cart-btn-float" onclick="openCart()" title="View Cart">
-  🛒
-  <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
-</div>
-<button class="admin-btn" onclick="openAdmin()" title="Admin Panel">⚙️</button>
-
-<!-- Cart Modal -->
-<div id="cartModal" class="modal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal('cartModal')">×</button>
-    <div id="cartContent"></div>
-  </div>
-</div>
-
-<!-- Admin Modal -->
-<div id="adminModal" class="modal">
-  <div class="modal-box wide">
-    <button class="modal-close" onclick="closeModal('adminModal')">×</button>
-    <div id="adminContent"></div>
-  </div>
-</div>
-
-<div id="toast" class="toast"></div>
-
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-
-<script>
-/* ============================================================
-   🔥 आपका FIREBASE CONFIG
-   ============================================================ */
-const firebaseConfig = {
-  apiKey: "AIzaSyAKe_cHTWNYerJCo6drMPn2wOi59HJR8XQ",
-  authDomain: "kapilmindo-3c257.firebaseapp.com",
-  databaseURL: "https://kapilmindo-3c257-default-rtdb.firebaseio.com",
-  projectId: "kapilmindo-3c257",
-  storageBucket: "kapilmindo-3c257.firebasestorage.app",
-  messagingSenderId: "280067203318",
-  appId: "1:280067203318:web:98bd3da14eee3a2f900cd7",
-  measurementId: "G-CHRK14YN6D"
-};
-
-const IMG_BASE = "./";
-const PHONE = "918383050500";
-
-/* ============================================================
-   STATE & INIT
-   ============================================================ */
-let db = null;
-let auth = null;
-let firebaseReady = false;
-let products = [];
-let cart = JSON.parse(localStorage.getItem("mindo_cart")) || [];
-let paymentSettings = { qrCode:"", upiId:"" };
-let isAdmin = false;
-let adminTab = "orders";
-let showAllProducts = false;
-
-async function init(){
-  localStorage.removeItem("mindo_products");
-
-  try {
-    if (firebaseConfig.databaseURL && firebaseConfig.databaseURL !== "YOUR_DATABASE_URL"){
-      firebase.initializeApp(firebaseConfig);
-      db = firebase.database();
-      auth = firebase.auth();
-      firebaseReady = true;
-
-      auth.onAuthStateChanged(user => {
-        if (user) {
-          isAdmin = true;
-          if (document.getElementById("adminModal").classList.contains("active")) renderAdminDashboard();
-        } else {
-          isAdmin = false;
-          if (document.getElementById("adminModal").classList.contains("active")) renderAdminLogin();
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#FCF8F1',
+              creamlite: '#FFFDF9',
+              gold: '#E5A93B',
+              golddark: '#C8871E',
+              green: '#184E34',
+              greendark: '#0F3422',
+              greenlight: '#E7F2EB',
+              red: '#B82E24',
+              redhover: '#9E241B',
+              terracotta: '#D95B30',
+              earth: '#281E19',
+              muted: '#76685E'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+            heritage: ['"Rozha One"', 'serif'],
+            hindi: ['"Yatra One"', 'cursive']
+          },
+          boxShadow: {
+            'warm': '0 10px 30px -5px rgba(184, 46, 36, 0.12), 0 8px 10px -6px rgba(40, 30, 25, 0.06)',
+            'card-hover': '0 20px 40px -10px rgba(24, 78, 52, 0.18)',
+            'floating': '0 12px 35px rgba(15, 52, 34, 0.25)'
+          }
         }
-      });
+      }
     }
-  } catch(e){ console.warn("Firebase init failed:", e); }
+  </script>
 
-  await loadProducts();
-  await loadPaymentSettings();
-  renderProducts();
-  updateCartBadge();
-  document.getElementById("yr").textContent = new Date().getFullYear();
-}
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F4EADA;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C8871E;
+      border-radius: 4px;
+    }
 
-/* ============================================================
-   PRODUCTS
-   ============================================================ */
-async function loadProducts(){
-  if (firebaseReady){
-    try {
-      const snapshot = await db.ref('products').once('value');
-      const data = snapshot.val();
-      products = data ? Object.keys(data).map(key => ({ id: key, ...data[key] })) : [];
-    } catch(e){ products = []; }
-  } else {
-    const cached = localStorage.getItem("mindo_products_new");
-    products = cached ? JSON.parse(cached) : [];
-  }
-}
+    /* Ambient Indian Royal Background texture */
+    .bg-heritage-pattern {
+      background-color: #FCF8F1;
+      background-image: radial-gradient(#d4af37 0.65px, transparent 0.65px), radial-gradient(#184e34 0.65px, #FCF8F1 0.65px);
+      background-size: 26px 26px;
+      background-position: 0 0, 13px 13px;
+      background-opacity: 0.15;
+    }
 
-function renderProducts(){
-  const grid = document.getElementById("productGrid");
-  
-  if (!products.length){
-    grid.innerHTML = '<div class="empty-state" style="grid-column: 1/-1;"><div class="ico">🫙</div>अभी कोई प्रोडक्ट नहीं है। कृपया एडमिन पैनल से प्रोडक्ट जोड़ें।</div>';
-    return;
-  }
+    .shimmer-gold {
+      background: linear-gradient(90deg, #E5A93B 0%, #FFF3CC 50%, #E5A93B 100%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      animation: shimmer 5s linear infinite;
+    }
 
-  const displayProducts = showAllProducts ? products : products.slice(0, 5);
+    @keyframes shimmer {
+      to { background-position: 200% center; }
+    }
 
-  let html = displayProducts.map((p) => {
-    const imgUrl = p.img ? (p.img.startsWith("http") || p.img.startsWith("data:") ? p.img : IMG_BASE + p.img) : "";
-    return `
-      <div class="card">
-        ${p.bestseller ? '<span class="ribbon">⭐ Bestseller</span>' : ''}
-        <div class="pic">
-          ${imgUrl ? `<img src="${imgUrl}" alt="${p.name}" loading="lazy" onerror="this.outerHTML='<span class=emoji>${p.emoji||"🫙"}</span>'">` : `<span class="emoji">${p.emoji||"🫙"}</span>`}
+    /* Custom Glassmorphism */
+    .glass-nav {
+      background: rgba(252, 248, 241, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(229, 169, 59, 0.2);
+    }
+
+    /* Floating micro animations */
+    @keyframes floatGentle {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+    }
+    .floating-ornament {
+      animation: floatGentle 6s ease-in-out infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-heritage-pattern text-brand-earth font-sans min-h-screen selection:bg-brand-gold selection:text-brand-greendark flex flex-col justify-between">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="bg-brand-greendark text-brand-gold px-4 py-2 text-xs md:text-sm font-medium tracking-wide flex justify-center items-center gap-3 border-b border-brand-gold/30">
+    <span class="inline-flex items-center gap-1.5"><i class="fa-solid fa-mortar-pestle text-brand-gold animate-pulse"></i> 100% Traditional Sun-Dried • Made in Pure Kachi Ghani Mustard Oil</span>
+    <span class="hidden md:inline text-brand-creamlite/40">|</span>
+    <span class="hidden md:inline text-brand-creamlite">📦 Free Fast Delivery on orders above ₹699</span>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-brand-earth/10 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Branding -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-greendark to-brand-green flex items-center justify-center text-brand-gold shadow-md shadow-brand-green/20 group-hover:scale-105 transition-transform duration-300">
+          <i class="fa-solid fa-jar text-2xl"></i>
         </div>
-        <div class="body">
-          <h3>${p.name}</h3>
-          <div class="hi">${p.hi||""}</div>
-          <div class="tag">${p.tag||""}</div>
-          <div class="row">
-            <span class="price">₹${p.price}${p.mrp ? `<small>₹${p.mrp}</small>` : ''}</span>
-            <span class="wt">450g</span>
+        <div class="flex flex-col">
+          <span class="font-serif font-black text-2xl md:text-3xl tracking-tight text-brand-greendark leading-none">
+            Mindo<span class="text-brand-red font-heritage">.</span>
+          </span>
+          <span class="font-hindi text-xs tracking-wider text-brand-golddark font-semibold mt-0.5">घर जैसा असली स्वाद</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden lg:flex items-center gap-8 font-medium text-brand-earth/80 text-sm tracking-wide">
+        <a href="#pickles" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-pepper-hot text-brand-red/70 text-xs"></i> हमारे अचार (Shop)</a>
+        <a href="#why-us" class="hover:text-brand-green transition-colors">Speciality</a>
+        <a href="#ingredients" class="hover:text-brand-green transition-colors">Pure Spices</a>
+        <a href="#reviews" class="hover:text-brand-green transition-colors">Reviews</a>
+        <a href="#contact" class="hover:text-brand-green transition-colors">Contact</a>
+      </nav>
+
+      <!-- Right CTAs -->
+      <div class="flex items-center gap-3 md:gap-4">
+        <!-- Direct WhatsApp Quick Help -->
+        <a href="https://wa.me/918383050500" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-full border border-brand-green/20 text-brand-green hover:bg-brand-greenlight transition">
+          <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i>
+          <span>Helpdesk</span>
+        </a>
+
+        <!-- Cart Trigger Button -->
+        <button onclick="openCart()" class="relative bg-brand-green hover:bg-brand-greendark text-white px-4 md:px-5 py-2.5 rounded-full flex items-center gap-2.5 shadow-md shadow-brand-green/30 hover:shadow-lg transition-all transform active:scale-95 duration-200">
+          <i class="fa-solid fa-basket-shopping text-sm md:text-base text-brand-gold"></i>
+          <span class="font-bold text-xs md:text-sm tracking-wider uppercase">Cart</span>
+          <span id="navCartBadge" class="bg-brand-red text-white text-[11px] font-black h-5 w-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative overflow-hidden pt-12 pb-20 md:py-24 bg-gradient-to-b from-[#FFF9EE] via-[#FCF5E6] to-brand-cream border-b border-brand-earth/5">
+    <!-- Floating Organic Food Icons in Background -->
+    <div class="absolute top-10 left-[6%] text-brand-gold/25 text-5xl floating-ornament pointer-events-none select-none">🥭</div>
+    <div class="absolute bottom-16 left-[10%] text-brand-red/25 text-4xl floating-ornament pointer-events-none select-none" style="animation-delay: 2s;">🌶️</div>
+    <div class="absolute top-14 right-[8%] text-brand-green/20 text-5xl floating-ornament pointer-events-none select-none" style="animation-delay: 1.2s;">🍋</div>
+    <div class="absolute bottom-20 right-[12%] text-brand-gold/30 text-4xl floating-ornament pointer-events-none select-none" style="animation-delay: 3s;">🫙</div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Content -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          
+          <div class="inline-flex items-center gap-2 bg-gradient-to-r from-brand-green/10 to-brand-gold/15 border border-brand-green/20 px-4 py-1.5 rounded-full">
+            <span class="flex h-2 w-2 rounded-full bg-emerald-600 animate-ping"></span>
+            <span class="text-xs md:text-sm font-semibold tracking-wide text-brand-greendark font-hindi">100% शुद्ध सरसों तेल • बरनी में धूप-पका</span>
           </div>
-          <button class="btn green" onclick='addToCart(${JSON.stringify(p).replace(/'/g,"&#39;")})'>🛒 कार्ट में जोड़ें</button>
+
+          <h1 class="font-serif text-4xl sm:text-5xl xl:text-6xl text-brand-greendark font-black leading-[1.15] tracking-tight">
+            घर जैसा असली स्वाद, <br class="hidden sm:inline">
+            <span class="text-brand-red font-hindi">दादी-नानी</span> के प्यार से बना।
+          </h1>
+
+          <p class="text-base sm:text-lg text-brand-muted max-w-2xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            Mindo Pickles brings the legendary taste of traditional Northern Indian households right to your plate. 
+            No synthetic vinegar, no artificial colors—only cold-pressed mustard oil, organic hand-picked spices, and authentic patience.
+          </p>
+
+          <!-- CTAs -->
+          <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#pickles" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-brand-red to-brand-redhover text-white font-bold px-8 py-4 rounded-xl shadow-warm hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 transition duration-200">
+              <i class="fa-solid fa-utensils text-sm text-brand-gold"></i>
+              <span>Explore Pickles • अभी खरीदें</span>
+            </a>
+            
+            <a href="tel:8383050500" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-white border border-brand-earth/15 hover:border-brand-green text-brand-greendark font-bold px-6 py-4 rounded-xl hover:bg-brand-creamlite shadow-sm transition duration-200">
+              <i class="fa-solid fa-phone-volume text-brand-green"></i>
+              <span>Call: 8383 0505 00</span>
+            </a>
+          </div>
+
+          <!-- Trust Badges Row -->
+          <div class="pt-6 border-t border-brand-earth/10 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center sm:text-left">
+            <div>
+              <p class="font-serif text-2xl font-black text-brand-greendark">100%</p>
+              <p class="text-xs font-medium text-brand-muted mt-0.5">Pure Mustard Oil</p>
+            </div>
+            <div>
+              <p class="font-serif text-2xl font-black text-brand-greendark">0%</p>
+              <p class="text-xs font-medium text-brand-muted mt-0.5">Chemicals & Preservatives</p>
+            </div>
+            <div>
+              <p class="font-serif text-2xl font-black text-brand-greendark">FSSAI</p>
+              <p class="text-xs font-medium text-brand-muted mt-0.5">Certified Kitchen</p>
+            </div>
+          </div>
+
         </div>
-      </div>`;
-  }).join("");
 
-  if (!showAllProducts && products.length > 5) {
-    html += `
-      <div class="card see-all-card" onclick="showAllProducts = true; renderProducts();">
-        <div class="inner">
-          <div class="plus">➕</div>
-          <h3>See All Products</h3>
-          <p style="color:#7a6b5c">देखें सभी ${products.length} प्रोडक्ट्स</p>
-        </div>
-      </div>`;
-  }
-  grid.innerHTML = html;
-}
+        <!-- Right Visual Showcase Banner -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <div class="relative w-full max-w-md">
+            
+            <!-- Glow background -->
+            <div class="absolute -inset-4 bg-gradient-to-r from-brand-gold/40 to-brand-red/30 rounded-3xl blur-2xl opacity-60"></div>
 
-/* ============================================================
-   CART FLOW
-   ============================================================ */
-function addToCart(p){
-  const existing = cart.find(item => item.name === p.name);
-  if(existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ ...p, qty: 1 });
-  }
-  saveCart();
-  updateCartBadge();
-  toast("✅ कार्ट में जोड़ दिया गया!", "success");
-}
+            <!-- Featured Artisanal Card -->
+            <div class="relative bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-brand-gold/30 shadow-2xl space-y-6">
+              
+              <div class="flex items-center justify-between pb-4 border-b border-brand-earth/10">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-brand-red animate-pulse"></span>
+                  <span class="text-xs uppercase font-extrabold tracking-wider text-brand-red">Authentic Barni Pickle</span>
+                </div>
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-brand-greenlight text-brand-green">450g Standard Jar</span>
+              </div>
 
-function saveCart(){
-  localStorage.setItem("mindo_cart", JSON.stringify(cart));
-}
+              <!-- Main Visual Representation -->
+              <div class="relative h-64 sm:h-72 w-full rounded-2xl bg-gradient-to-b from-[#FFF2D6] to-[#FFE099] flex flex-col items-center justify-center overflow-hidden border border-amber-200">
+                <div class="text-8xl sm:text-9xl filter drop-shadow-lg select-none hover:scale-110 transition duration-300">
+                  🫙
+                </div>
+                <div class="absolute bottom-3 bg-brand-greendark/85 text-brand-gold px-4 py-1.5 rounded-full text-xs font-semibold backdrop-blur-sm">
+                  सुगंधित राई & मेथी का तड़का
+                </div>
+              </div>
 
-function updateCartBadge(){
-  const badge = document.getElementById("cartBadge");
-  const count = cart.reduce((sum, item) => sum + item.qty, 0);
-  if(count > 0){
-    badge.textContent = count;
-    badge.style.display = "flex";
-  } else {
-    badge.style.display = "none";
-  }
-}
+              <!-- Mini Pitch & Quick Add -->
+              <div class="space-y-3">
+                <div class="flex justify-between items-baseline">
+                  <div>
+                    <h3 class="font-serif font-black text-xl text-brand-greendark">Grandma's Heritage Mix</h3>
+                    <p class="text-xs text-brand-muted font-hindi">परंपरागत स्वाद जो दिल छू ले</p>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-xs text-gray-400 line-through">₹299</span>
+                    <span class="font-serif text-2xl font-black text-brand-red ml-1">₹249</span>
+                  </div>
+                </div>
 
-function updateQty(index, change){
-  cart[index].qty += change;
-  if(cart[index].qty <= 0){
-    cart.splice(index, 1);
-  }
-  saveCart();
-  updateCartBadge();
-  renderCartContent();
-}
+                <button onclick="quickAddSample()" class="w-full bg-brand-green hover:bg-brand-greendark text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 shadow-md transition">
+                  <i class="fa-solid fa-cart-plus text-brand-gold"></i>
+                  <span>Quick Add to Bag</span>
+                </button>
+              </div>
 
-function removeFromCart(index){
-  cart.splice(index, 1);
-  saveCart();
-  updateCartBadge();
-  renderCartContent();
-}
-
-function openCart(){
-  document.getElementById("cartModal").classList.add("active");
-  document.body.style.overflow = "hidden";
-  renderCartContent();
-}
-
-function renderCartContent(){
-  const c = document.getElementById("cartContent");
-  
-  if(cart.length === 0){
-    c.innerHTML = `
-      <h2>🛒 आपका कार्ट</h2>
-      <div class="empty-state" style="padding:30px 10px">
-        <div class="ico">🛒</div>
-        <p>आपका कार्ट खाली है।</p>
-        <button class="btn green" style="margin-top:15px" onclick="closeModal('cartModal')">प्रोडक्ट देखें</button>
-      </div>`;
-    return;
-  }
-
-  let itemsHtml = cart.map((item, index) => {
-    const imgUrl = item.img ? (item.img.startsWith("http") || item.img.startsWith("data:") ? item.img : IMG_BASE + item.img) : "";
-    return `
-      <div class="cart-item">
-        <div class="ci-pic">${imgUrl ? `<img src="${imgUrl}" alt="">` : (item.emoji||"🫙")}</div>
-        <div class="ci-info">
-          <h4>${item.name}</h4>
-          <div class="ci-price">₹${item.price}</div>
-        </div>
-        <div class="qty-controls">
-          <button onclick="updateQty(${index}, -1)">−</button>
-          <span>${item.qty}</span>
-          <button onclick="updateQty(${index}, 1)">+</button>
-        </div>
-        <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
-      </div>`;
-  }).join("");
-
-  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  
-  const qrHtml = paymentSettings.qrCode
-    ? `<div class="qr-section">
-        <h4>💳 Payment / भुगतान</h4>
-        <img src="${paymentSettings.qrCode}" alt="QR" class="qr-img">
-        ${paymentSettings.upiId ? `<div>UPI ID: <span class="upi-box">${paymentSettings.upiId}</span></div>` : ""}
-      </div>` : "";
-
-  c.innerHTML = `
-    <h2>🛒 आपका कार्ट</h2>
-    <div style="max-height: 30vh; overflow-y:auto; padding-right:10px; margin-bottom:15px">
-      ${itemsHtml}
-    </div>
-    
-    <form id="cartOrderForm" onsubmit="submitCartOrder(event)">
-      <div class="total-row" style="margin-top:0; padding-top:10px; border-top:2px dashed #e5ddd0">
-        <span>Total:</span><span class="amt">₹${total}</span>
-      </div>
-      
-      <div style="margin-top:15px" class="form-group"><label>आपका नाम *</label><input type="text" name="customerName" required placeholder="Full name"></div>
-      <div class="form-row">
-        <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required pattern="[0-9]{10}" placeholder="10 digit mobile" maxlength="10"></div>
-      </div>
-      <div class="form-group"><label>पूरा Address *</label><textarea name="address" required placeholder="House, Street, Area, City, Pincode"></textarea></div>
-      <div class="form-group"><label>Note (optional)</label><input type="text" name="note" placeholder="कोई special instruction"></div>
-      
-      ${qrHtml}
-      
-      <button type="submit" class="btn green" style="width:100%;margin-top:18px" id="submitCartBtn">✅ Order Place करें (₹${total})</button>
-    </form>`;
-}
-
-async function submitCartOrder(e){
-  e.preventDefault();
-  const btn = document.getElementById("submitCartBtn");
-  btn.disabled = true;
-  btn.textContent = "⏳ Placing order...";
-
-  const fd = new FormData(e.target);
-  const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  
-  const orderData = {
-    customerName: fd.get("customerName").trim(),
-    phone: fd.get("phone").trim(),
-    address: fd.get("address").trim(),
-    note: fd.get("note").trim(),
-    items: cart.map(item => ({ name: item.name, price: item.price, qty: item.qty, emoji: item.emoji||"🫙" })),
-    total,
-    status: "pending"
-  };
-
-  try {
-    let orderId;
-    if (firebaseReady){
-      const ref = db.ref('orders').push();
-      await ref.set({ ...orderData, createdAt: firebase.database.ServerValue.TIMESTAMP });
-      orderId = ref.key.slice(-6).toUpperCase();
-    } else {
-      orderId = "LOCAL" + Date.now().toString().slice(-6);
-      const orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
-      orders.push({ id: orderId, ...orderData, createdAt: Date.now() });
-      localStorage.setItem("mindo_orders", JSON.stringify(orders));
-    }
-
-    const itemsString = cart.map(item => `${item.name} (x${item.qty})`).join(", ");
-    const waMsg = encodeURIComponent(
-      `Namaste Mindo! Order placed\n\n👤 ${orderData.customerName}\n📞 ${orderData.phone}\n📦 ${itemsString}\n💰 Total: ₹${total}\n📍 ${orderData.address}\n\nOrder ID: ${orderId}`
-    );
-    
-    document.getElementById("cartContent").innerHTML = `
-      <div class="success-box">
-        <div class="check">✅</div>
-        <h3>Order Place हो गया!</h3>
-        <p>हम जल्द ही WhatsApp/Call पर confirm करेंगे।</p>
-        <div class="oid">Order ID: ${orderId}</div>
-        <p style="font-size:.85rem;margin-top:16px">Turant confirmation के लिए WhatsApp पर message भेजें:</p>
-        <a class="btn green" href="https://wa.me/${PHONE}?text=${waMsg}" target="_blank" style="margin-top:8px;margin-bottom:10px">💬 WhatsApp पर Confirm करें</a>
-        <button class="btn ghost" onclick="cart = []; saveCart(); updateCartBadge(); closeModal('cartModal'); renderProducts();">Continue Shopping</button>
-      </div>`;
-  } catch(err){
-    console.error(err);
-    toast("Order failed: " + err.message, "error");
-    btn.disabled = false;
-    btn.textContent = `✅ Order Place करें (₹${total})`;
-  }
-}
-
-/* ============================================================
-   PAYMENT SETTINGS
-   ============================================================ */
-async function loadPaymentSettings(){
-  if (!firebaseReady) {
-    const cached = localStorage.getItem("mindo_payment");
-    if (cached) paymentSettings = JSON.parse(cached);
-    return;
-  }
-  try {
-    const snapshot = await db.ref('settings/payment').once('value');
-    if (snapshot.exists()) paymentSettings = snapshot.val();
-  } catch(e){ console.warn("Settings load failed:", e); }
-}
-
-/* ============================================================
-   ADMIN PANEL (Auth & Logic)
-   ============================================================ */
-function openAdmin(){
-  document.getElementById("adminModal").classList.add("active");
-  document.body.style.overflow = "hidden";
-  if (isAdmin) renderAdminDashboard();
-  else renderAdminLogin();
-}
-
-function renderAdminLogin(){
-  document.getElementById("adminContent").innerHTML = `
-    <h2>🔐 Admin Login</h2>
-    <p class="subtitle">कृपया अपना ईमेल और पासवर्ड डालें</p>
-    <form onsubmit="adminLogin(event)">
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" id="adminEmail" required placeholder="admin@example.com" autofocus>
-      </div>
-      <div class="form-group">
-        <label>Password</label>
-        <input type="password" id="adminPass" required placeholder="********">
-      </div>
-      <button type="submit" class="btn green" style="width:100%" id="loginBtn">Login</button>
-    </form>`;
-}
-
-function adminLogin(e){
-  e.preventDefault();
-  const email = document.getElementById("adminEmail").value;
-  const pass = document.getElementById("adminPass").value;
-  const btn = document.getElementById("loginBtn");
-  
-  btn.disabled = true;
-  btn.textContent = "⏳ Checking...";
-
-  auth.signInWithEmailAndPassword(email, pass)
-    .then(() => toast("Welcome, Admin! 👋", "success"))
-    .catch(err => {
-      toast("Login Failed: " + err.message, "error");
-      btn.disabled = false;
-      btn.textContent = "Login";
-    });
-}
-
-function renderAdminDashboard(){
-  const c = document.getElementById("adminContent");
-  c.innerHTML = `
-    <div class="admin-header">
-      <h2>⚙️ Admin Dashboard</h2>
-      <button class="btn ghost sm" onclick="adminLogout()">Logout</button>
-    </div>
-    <div class="admin-tabs">
-      <button class="admin-tab ${adminTab==='orders'?'active':''}" onclick="switchTab('orders')">📦 Orders</button>
-      <button class="admin-tab ${adminTab==='products'?'active':''}" onclick="switchTab('products')">🛍️ Products</button>
-      <button class="admin-tab ${adminTab==='payment'?'active':''}" onclick="switchTab('payment')">💳 Payment</button>
-    </div>
-    <div id="adminPanel" class="admin-panel active"></div>`;
-  renderAdminPanel();
-}
-
-function switchTab(tab){ adminTab = tab; renderAdminDashboard(); }
-
-async function renderAdminPanel(){
-  const panel = document.getElementById("adminPanel");
-  if (adminTab === "orders") return renderOrdersPanel(panel);
-  if (adminTab === "products") return renderProductsPanel(panel);
-  if (adminTab === "payment") return renderPaymentPanel(panel);
-}
-
-/* ---- Orders Admin ---- */
-async function renderOrdersPanel(panel){
-  panel.innerHTML = `<div class="empty-state">⏳ Loading orders...</div>`;
-  let orders = [];
-  
-  if (firebaseReady){
-    try {
-      const snapshot = await db.ref('orders').once('value');
-      const data = snapshot.val() || {};
-      orders = Object.keys(data).map(key => ({ id: key, ...data[key] }));
-      orders.sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0));
-    } catch(e){ toast("Error loading orders.", "error"); }
-  } else {
-    orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
-    orders.reverse();
-  }
-
-  if (!orders.length){
-    panel.innerHTML = `<div class="empty-state"><div class="ico">📭</div>अभी कोई order नहीं आया।</div>`;
-    return;
-  }
-
-  const pending = orders.filter(o => o.status !== "delivered").length;
-  panel.innerHTML = `
-    <div class="admin-header">
-      <h3>📦 Orders (${orders.length} total • ${pending} pending)</h3>
-      <button class="btn sm" onclick="renderAdminPanel()">🔄 Refresh</button>
-    </div>
-    <div class="order-list">${orders.map(o => renderOrderCard(o)).join("")}</div>`;
-}
-
-function renderOrderCard(o){
-  const date = new Date(o.createdAt || Date.now());
-  const dateStr = date.toLocaleString("en-IN", { day:"2-digit", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit" });
-  const idShort = (o.id||"").slice(-6).toUpperCase();
-  const itemsHtml = (o.items||[]).map(it => `🔸 ${it.name} × ${it.qty} = ₹${it.price*it.qty}`).join("<br>");
-  const isDel = o.status === "delivered";
-
-  return `
-    <div class="order-item ${isDel?'delivered':''}">
-      <div class="ohead">
-        <div>
-          <div class="oname">${o.customerName} • #${idShort}</div>
-          <div class="oinfo">📞 ${o.phone} &nbsp;•&nbsp; ${dateStr}</div>
-        </div>
-        <span class="ostatus ${o.status||'pending'}">${o.status||'pending'}</span>
-      </div>
-      <div class="oitems">${itemsHtml}</div>
-      <div class="oinfo">📍 ${o.address}${o.note ? `<br>📝 ${o.note}` : ""}</div>
-      <div class="oinfo" style="margin-top:6px;font-weight:700;color:var(--red)">Total: ₹${o.total}</div>
-      <div class="oactions">
-        ${!isDel ? `<button class="btn green sm" onclick="markDelivered('${o.id}')">✅ Mark Delivered</button>` : `<button class="btn ghost sm" onclick="markPending('${o.id}')">↩ Undo</button>`}
-        <a class="btn ghost sm" href="https://wa.me/91${o.phone}?text=${encodeURIComponent('Namaste '+o.customerName+', your Mindo order #'+idShort+' is confirmed!')}" target="_blank">💬 WhatsApp</a>
-        <a class="btn ghost sm" href="tel:${o.phone}">📞 Call</a>
-      </div>
-    </div>`;
-}
-
-async function markDelivered(id){
-  try {
-    if (firebaseReady){
-      await db.ref('orders/' + id).update({ status:"delivered", deliveredAt: firebase.database.ServerValue.TIMESTAMP });
-    } else {
-      const orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
-      const o = orders.find(x => x.id === id);
-      if (o) o.status = "delivered";
-      localStorage.setItem("mindo_orders", JSON.stringify(orders));
-    }
-    toast("✅ Marked delivered", "success");
-    renderAdminPanel();
-  } catch(e){ toast("Failed: " + e.message, "error"); }
-}
-
-async function markPending(id){
-  try {
-    if (firebaseReady){
-      await db.ref('orders/' + id).update({ status:"pending" });
-    } else {
-      const orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
-      const o = orders.find(x => x.id === id);
-      if (o) o.status = "pending";
-      localStorage.setItem("mindo_orders", JSON.stringify(orders));
-    }
-    toast("↩ Marked pending");
-    renderAdminPanel();
-  } catch(e){ toast("Failed: " + e.message, "error"); }
-}
-
-/* ---- Products Admin ---- */
-function renderProductsPanel(panel){
-  panel.innerHTML = `
-    <div class="admin-header">
-      <h3>🛍️ Products (${products.length})</h3>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn green sm" onclick="openProductForm()">➕ Add Product</button>
-      </div>
-    </div>
-    ${products.length ? products.map((p,i) => `
-      <div class="product-admin-item">
-        <div class="pai-info">
-          <div class="pai-name">${p.emoji||""} ${p.name}</div>
-          <div class="pai-meta">₹${p.price}${p.mrp ? ` (MRP ₹${p.mrp})` : ""} ${p.bestseller ? "• ⭐ Bestseller" : ""}</div>
-        </div>
-        <div class="pai-actions">
-          <button class="icon-btn edit" onclick="openProductForm(${i})" title="Edit">✏️</button>
-          <button class="icon-btn" onclick="deleteProduct(${i})" title="Delete">🗑️</button>
-        </div>
-      </div>`).join("") : '<div class="empty-state"><div class="ico">📦</div>कोई product नहीं है।</div>'}
-    <div id="productFormArea"></div>`;
-}
-
-function openProductForm(index = -1){
-  const p = index >= 0 ? products[index] : { name:"", hi:"", tag:"", price:0, mrp:0, emoji:"🫙", img:"", bestseller:false };
-  
-  let imgPreview = "";
-  if (p.img) {
-    const imgUrl = p.img.startsWith("http") || p.img.startsWith("data:") ? p.img : IMG_BASE + p.img;
-    imgPreview = `<img src="${imgUrl}" style="max-height:100px;border-radius:8px;margin-top:10px;border:1px solid #ddd">`;
-  }
-
-  document.getElementById("productFormArea").innerHTML = `
-    <div style="background:#fff8ea;padding:16px;border-radius:12px;margin-top:14px;border:2px solid var(--gold)">
-      <h4 style="color:var(--green);margin-bottom:12px">${index>=0?'✏️ Edit':'➕ Add'} Product</h4>
-      <form onsubmit="saveProduct(event, ${index})">
-        <div class="form-group"><label>Name *</label><input name="name" required value="${p.name||''}"></div>
-        <div class="form-group"><label>Hindi Name</label><input name="hi" value="${p.hi||''}"></div>
-        <div class="form-group"><label>Description</label><input name="tag" value="${p.tag||''}"></div>
-        <div class="form-row">
-          <div class="form-group"><label>Price *</label><input type="number" name="price" required value="${p.price||''}"></div>
-          <div class="form-group"><label>MRP</label><input type="number" name="mrp" value="${p.mrp||''}"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Emoji (Fallback)</label><input name="emoji" value="${p.emoji||'🫙'}" maxlength="4"></div>
-          <div class="form-group">
-            <label>Image Upload</label>
-            <input type="file" accept="image/*" onchange="handleImageUpload(event)" style="padding:6px">
-            <input type="hidden" name="img" id="imgBase64Input" value="${p.img||''}">
+            </div>
           </div>
         </div>
-        <div id="imagePreview" style="margin-bottom:10px">${imgPreview}</div>
-        <div class="form-group"><label><input type="checkbox" name="bestseller" ${p.bestseller?'checked':''}> ⭐ Bestseller</label></div>
-        <div style="display:flex;gap:8px">
-          <button type="submit" class="btn green sm">Save</button>
-          <button type="button" class="btn ghost sm" onclick="document.getElementById('productFormArea').innerHTML=''">Cancel</button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BADGES HIGHLIGHTS -->
+  <section class="py-10 bg-white border-b border-brand-earth/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-brand-cream/60 border border-brand-gold/20">
+          <div class="w-12 h-12 rounded-xl bg-brand-gold/20 text-brand-golddark flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-brand-greendark">100% Homemade</h4>
+            <p class="text-xs text-brand-muted">Ghar ke masale se tayyar</p>
+          </div>
         </div>
-      </form>
-    </div>`;
-}
 
-function handleImageUpload(e) {
-  const file = e.target.files[0];
-  if (!file) return;
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-brand-cream/60 border border-brand-gold/20">
+          <div class="w-12 h-12 rounded-xl bg-brand-greenlight text-brand-green flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-droplet"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-brand-greendark">Cold-Pressed Mustard</h4>
+            <p class="text-xs text-brand-muted">Pure Kachi Ghani Oil</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-brand-cream/60 border border-brand-gold/20">
+          <div class="w-12 h-12 rounded-xl bg-brand-red/15 text-brand-red flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-ban"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-brand-greendark">Zero Chemicals</h4>
+            <p class="text-xs text-brand-muted">No added artificial colors</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3.5 p-3 rounded-xl bg-brand-cream/60 border border-brand-gold/20">
+          <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0">
+            <i class="fa-solid fa-sun"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-brand-greendark">Sun-Cured Barnis</h4>
+            <p class="text-xs text-brand-muted">Aged to supreme perfection</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT SHOWCASE SECTION -->
+  <section id="pickles" class="py-16 md:py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <span class="text-xs md:text-sm uppercase tracking-widest font-extrabold text-brand-red font-hindi">हाथों से तैयार पारंपरिक स्वाद</span>
+        <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-black text-brand-greendark">
+          Our Signature Pickle Collection
+        </h2>
+        <p class="text-sm md:text-base text-brand-muted">
+          Every jar is made in small artisanal batches of 450 grams using farm-fresh vegetables and slow-cooked sun infusion.
+        </p>
+      </div>
+
+      <!-- Live Interactive Products Grid (Populated dynamically) -->
+      <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+        <!-- Rendered via JS -->
+        <div class="col-span-full py-20 text-center">
+          <div class="inline-block animate-spin text-brand-gold text-4xl mb-4"><i class="fa-solid fa-circle-notch"></i></div>
+          <p class="text-brand-muted font-medium">अचारों की सूची लोड हो रही है (Loading delicious pickles)...</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY MINDO HERITAGE PROCESS -->
+  <section id="why-us" class="py-16 md:py-24 bg-gradient-to-b from-white to-[#FAF4E6] border-y border-brand-earth/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <span class="text-xs uppercase font-bold tracking-widest text-brand-golddark">Pure Tradition</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-black text-brand-greendark">Mindo का अचार क्यों है खास?</h2>
+        <p class="text-brand-muted text-sm sm:text-base">जब बात सेहत और स्वाद की हो, तो घर जैसा कोई विकल्प नहीं।</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Step 1 -->
+        <div class="bg-white p-6 rounded-2xl border border-brand-gold/30 shadow-sm hover:shadow-md transition text-center space-y-4">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-amber-50 text-brand-golddark flex items-center justify-center text-3xl">
+            🫙
+          </div>
+          <h3 class="font-serif font-black text-lg text-brand-greendark">1. शुध्द कच्ची घानी सरसों</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+            हर अचार सिर्फ और सिर्फ प्रीमियम सरसों तेल में बनाया जाता है ताकि असली पंजेंट और नेचुरल फ्लेवर मिले।
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white p-6 rounded-2xl border border-brand-gold/30 shadow-sm hover:shadow-md transition text-center space-y-4">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-red-50 text-brand-red flex items-center justify-center text-3xl">
+            🌶️
+          </div>
+          <h3 class="font-serif font-black text-lg text-brand-greendark">2. साबुत कुटे हुए मसाले</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+            राई, सौंफ, मेथीदाना, अजवाइन और हींग—हर मसाला धीमी आंच पर भूनकर दरदरा कूटा जाता है।
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white p-6 rounded-2xl border border-brand-gold/30 shadow-sm hover:shadow-md transition text-center space-y-4">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-50 text-brand-green flex items-center justify-center text-3xl">
+            🧼
+          </div>
+          <h3 class="font-serif font-black text-lg text-brand-greendark">3. हाइजीन और प्यार</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+            FSSAI सर्टिफाइड मानकों के अनुसार साफ़-सफ़ाई के साथ पारंपरिक मिट्टी और चीनी मिट्टी की बरनियों में संरक्षित।
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white p-6 rounded-2xl border border-brand-gold/30 shadow-sm hover:shadow-md transition text-center space-y-4">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-3xl">
+            ☀️
+          </div>
+          <h3 class="font-serif font-black text-lg text-brand-greendark">4. प्राकृतिक धूप में पकाई</h3>
+          <p class="text-xs sm:text-sm text-brand-muted leading-relaxed">
+            बिना किसी केमिकल एसिड के, छतों पर धूप की किरणों में हफ्तों तक प्राकृतिक रूप से तैयार।
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SPICE INGREDIENTS BANNER -->
+  <section id="ingredients" class="py-14 bg-gradient-to-r from-brand-greendark to-brand-green text-white relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 text-center space-y-4 relative z-10">
+      <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-xs font-semibold text-brand-gold">
+        <i class="fa-solid fa-mortar-pestle"></i> 100% Natural Farm Sourced
+      </div>
+      <h2 class="font-serif text-3xl sm:text-4xl font-black text-brand-gold">पवित्र मसालों का संगम</h2>
+      <p class="text-sm sm:text-base text-gray-200 max-w-3xl mx-auto leading-relaxed">
+        Green Chilli, Iodised Salt, Mustard Oil, Red Chilli, Cumin, Saunf, Ajwain, Turmeric, Hing (Asafoetida), Black Pepper, Mustard Seeds & Handpicked Indigenous Condiments.
+      </p>
+      <div class="pt-4 flex flex-wrap justify-center gap-2 text-xs font-semibold">
+        <span class="bg-white/10 px-3 py-1.5 rounded-full">🌱 No Artificial Vinegar</span>
+        <span class="bg-white/10 px-3 py-1.5 rounded-full">🌿 Zero Food Coloring</span>
+        <span class="bg-white/10 px-3 py-1.5 rounded-full">🫙 Traditional Ceramic Cure</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS / CUSTOMER EXPERIENCES -->
+  <section id="reviews" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+        <span class="text-xs uppercase font-extrabold tracking-widest text-brand-red">Real Verified Reviews</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-black text-brand-greendark">हमारे ग्राहकों की राय</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        
+        <div class="bg-white p-7 rounded-2xl border border-brand-earth/10 shadow-sm hover:shadow-warm transition space-y-4">
+          <div class="flex text-amber-400 text-sm gap-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm text-brand-earth/80 italic leading-relaxed">
+            "बिल्कुल घर जैसा स्वाद! लाल मिर्च का भरवा अचार तो कमाल का है – माँ के हाथ का अचार याद आ गया। तेल बिल्कुल हल्का और असली है।"
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-gray-100">
+            <div class="w-10 h-10 rounded-full bg-brand-green/20 text-brand-green font-bold flex items-center justify-center text-sm">
+              RS
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-brand-greendark">Rohit Sharma</h4>
+              <p class="text-xs text-brand-muted">Delhi • Verified Buyer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-7 rounded-2xl border border-brand-earth/10 shadow-sm hover:shadow-warm transition space-y-4">
+          <div class="flex text-amber-400 text-sm gap-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm text-brand-earth/80 italic leading-relaxed">
+            "मिक्स अचार में असली मसालों का स्वाद है, बाजार वाले केमिकल पिकल जैसे गले में नहीं लगता। पराठों के साथ रोज़ खाते हैं!"
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-gray-100">
+            <div class="w-10 h-10 rounded-full bg-brand-gold/20 text-brand-golddark font-bold flex items-center justify-center text-sm">
+              PV
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-brand-greendark">Priya Verma</h4>
+              <p class="text-xs text-brand-muted">Noida • Regular Customer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white p-7 rounded-2xl border border-brand-earth/10 shadow-sm hover:shadow-warm transition space-y-4">
+          <div class="flex text-amber-400 text-sm gap-1">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-sm text-brand-earth/80 italic leading-relaxed">
+            "शुद्ध सरसों तेल की खुशबू ढक्कन खोलते ही आ जाती है। डिलीवरी भी बहुत फ़ास्ट हुई और पैकिंग बहुत सेफ थी।"
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t border-gray-100">
+            <div class="w-10 h-10 rounded-full bg-brand-red/20 text-brand-red font-bold flex items-center justify-center text-sm">
+              AK
+            </div>
+            <div>
+              <h4 class="font-bold text-sm text-brand-greendark">Amit Kumar</h4>
+              <p class="text-xs text-brand-muted">Gurugram • Foodie</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT & ORDER FOOTPRINT -->
+  <section id="contact" class="py-16 bg-white border-t border-brand-earth/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <div class="bg-gradient-to-br from-brand-cream to-white rounded-3xl p-8 sm:p-12 border border-brand-gold/40 shadow-xl text-center space-y-6">
+        
+        <span class="inline-block px-4 py-1 rounded-full bg-brand-greenlight text-brand-green font-bold text-xs uppercase tracking-wider">
+          Direct Kitchen Connect
+        </span>
+
+        <h2 class="font-serif text-3xl sm:text-4xl font-black text-brand-greendark">
+          ऑर्डर या किसी भी प्रश्न के लिए संपर्क करें
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-left">
+          
+          <div class="p-4 rounded-xl bg-white border border-gray-200">
+            <p class="text-xs font-semibold text-brand-muted">📞 Direct Support / Order</p>
+            <a href="tel:8383050500" class="text-base font-extrabold text-brand-greendark hover:text-brand-red transition block mt-1">
+              8383 0505 00
+            </a>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-gray-200">
+            <p class="text-xs font-semibold text-brand-muted">✉️ Email Inquiry</p>
+            <a href="mailto:sanatan.ent500@gmail.com" class="text-sm font-bold text-brand-greendark hover:text-brand-red transition block mt-1 break-words">
+              sanatan.ent500@gmail.com
+            </a>
+          </div>
+
+          <div class="p-4 rounded-xl bg-white border border-gray-200">
+            <p class="text-xs font-semibold text-brand-muted">📍 Registered Facility</p>
+            <p class="text-xs font-medium text-brand-earth mt-1 leading-snug">
+              Sanatan Enterprises, F Block, School Road, Khanpur, South Delhi – 110062
+            </p>
+          </div>
+
+        </div>
+
+        <div class="pt-4 flex flex-wrap justify-center gap-4">
+          <a href="https://wa.me/918383050500?text=Namaste%20Mindo!%20I%20want%20to%20order%20pickles" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-7 py-3 rounded-xl inline-flex items-center gap-2 shadow-md hover:shadow-lg transition">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>WhatsApp पर ऑर्डर करें</span>
+          </a>
+
+          <a href="tel:8383050500" class="bg-brand-greendark hover:bg-brand-green text-white font-bold px-7 py-3 rounded-xl inline-flex items-center gap-2 shadow-md transition">
+            <i class="fa-solid fa-phone text-sm text-brand-gold"></i>
+            <span>Call Now</span>
+          </a>
+        </div>
+
+        <div class="pt-4">
+          <span class="inline-flex items-center gap-2 bg-[#EAF5ED] text-brand-green text-xs font-semibold px-4 py-2 rounded-full border border-emerald-200">
+            <i class="fa-solid fa-shield-halved"></i> FSSAI Lic. No.: 23325002004226
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-earth text-brand-cream/80 pt-12 pb-8 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <div class="font-serif font-black text-2xl text-brand-gold">Mindo Pickles</div>
+      <p class="text-xs max-w-md mx-auto text-brand-cream/60">
+        शुद्धता, स्वास्थ्य और प्राचीन भारतीय स्वाद का प्रतीक। दादी-नानी के पारंपरिक नुस्खों से प्रेरित।
+      </p>
+      <div class="text-xs text-brand-cream/40 pt-4 border-t border-white/10">
+        © <span id="yr"></span> Mindo – Manufactured & Marketed by Sanatan Enterprises. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING ACTION BUTTONS -->
   
-  const reader = new FileReader();
-  reader.onload = function(event) {
-    const img = new Image();
-    img.onload = function() {
-      const canvas = document.createElement('canvas');
-      const MAX_WIDTH = 500;
-      const scaleSize = MAX_WIDTH / img.width;
-      canvas.width = MAX_WIDTH;
-      canvas.height = img.height * scaleSize;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  <!-- WhatsApp Floating Trigger -->
+  <a href="https://wa.me/918383050500?text=Namaste%20Mindo!%20I%20want%20to%20order%20fresh%20pickles" target="_blank" class="fixed right-5 bottom-6 z-40 bg-emerald-600 hover:bg-emerald-700 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-floating hover:scale-110 transition-all duration-300">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- Cart Floating Sticky Trigger -->
+  <button onclick="openCart()" class="fixed right-5 bottom-24 z-40 bg-brand-gold hover:bg-brand-golddark text-brand-earth w-14 h-14 rounded-full flex items-center justify-center text-xl shadow-floating hover:scale-110 transition-all duration-300">
+    <i class="fa-solid fa-basket-shopping text-brand-earth"></i>
+    <span id="floatCartBadge" class="absolute -top-1 -right-1 bg-brand-red text-white text-[11px] font-black h-5 w-5 rounded-full flex items-center justify-center border-2 border-white">0</span>
+  </button>
+
+  <!-- Hidden Discreet Admin Trigger Button -->
+  <button onclick="openAdmin()" title="Admin Control" class="fixed left-4 bottom-4 z-40 w-8 h-8 rounded-full bg-brand-earth/20 hover:bg-brand-green text-brand-earth/60 hover:text-white flex items-center justify-center text-xs backdrop-blur-sm transition duration-300">
+    <i class="fa-solid fa-gear"></i>
+  </button>
+
+  <!-- ============================================================
+       MODAL 1: LUXURY CART & CHECKOUT DRAWER
+  ============================================================ -->
+  <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="relative bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-brand-gold/30 animate-in fade-in zoom-in duration-200 my-auto">
       
-      const base64String = canvas.toDataURL('image/jpeg', 0.7);
+      <!-- Close Button -->
+      <button onclick="closeModal('cartModal')" class="absolute top-5 right-5 text-gray-400 hover:text-brand-red text-xl w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Cart Dynamic Injected Body -->
+      <div id="cartContent">
+        <!-- Rendered by renderCartContent() -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MODAL 2: ADMIN PANEL (LOGIN & DASHBOARD)
+  ============================================================ -->
+  <div id="adminModal" class="fixed inset-0 z-50 bg-black/65 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div class="relative bg-white rounded-3xl max-w-3xl w-full p-6 sm:p-8 shadow-2xl border border-brand-earth/20 my-auto">
       
-      document.getElementById('imgBase64Input').value = base64String;
-      document.getElementById('imagePreview').innerHTML = `<img src="${base64String}" style="max-height:100px;border-radius:8px;margin-top:10px;border:1px solid #ddd">`;
+      <!-- Close Button -->
+      <button onclick="closeModal('adminModal')" class="absolute top-5 right-5 text-gray-400 hover:text-brand-red text-xl w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div id="adminContent">
+        <!-- Injected via renderAdminLogin() or renderAdminDashboard() -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATIONS -->
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-brand-earth text-white px-6 py-3 rounded-full font-semibold text-sm shadow-2xl pointer-events-none opacity-0 -translate-y-4 transition-all duration-300 flex items-center gap-2">
+    <span>Notification</span>
+  </div>
+
+  <!-- ============================================================
+       FIREBASE SCRIPTS (Compat v9 for existing DB schema)
+  ============================================================ -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+  <script>
+    /* ============================================================
+       FIREBASE CONFIG & ESSENTIALS
+    ============================================================ */
+    const firebaseConfig = {
+      apiKey: "AIzaSyAKe_cHTWNYerJCo6drMPn2wOi59HJR8XQ",
+      authDomain: "kapilmindo-3c257.firebaseapp.com",
+      databaseURL: "https://kapilmindo-3c257-default-rtdb.firebaseio.com",
+      projectId: "kapilmindo-3c257",
+      storageBucket: "kapilmindo-3c257.firebasestorage.app",
+      messagingSenderId: "280067203318",
+      appId: "1:280067203318:web:98bd3da14eee3a2f900cd7",
+      measurementId: "G-CHRK14YN6D"
+    };
+
+    const IMG_BASE = "./";
+    const PHONE = "918383050500";
+
+    // Application State
+    let db = null;
+    let auth = null;
+    let firebaseReady = false;
+    let products = [];
+    let cart = [];
+    let paymentSettings = { qrCode: "", upiId: "8383050500@ybl" };
+    let isAdmin = false;
+    let adminTab = "orders";
+    let showAllProducts = false;
+
+    // Default Fallback Pickles Catalog if empty
+    const DEFAULT_PRODUCTS = [
+      {
+        id: "p_mango",
+        name: "Heritage Aam Ka Achar",
+        hi: "पारंपरिक आम का अचार",
+        tag: "कच्ची कैरी, सौंफ, मेथी और शुद्ध सरसों तेल का बेजोड़ स्वाद।",
+        price: 249,
+        mrp: 299,
+        emoji: "🥭",
+        img: "",
+        bestseller: true
+      },
+      {
+        id: "p_redchilli",
+        name: "Banarasi Bharwa Lal Mirch",
+        hi: "बनारसी भरवा लाल मिर्च",
+        tag: "मोटी लाल मिर्च में भरा हाथ से पिसा अमचूर व राई का मसाला।",
+        price: 279,
+        mrp: 320,
+        emoji: "🌶️",
+        img: "",
+        bestseller: true
+      },
+      {
+        id: "p_lemon",
+        name: "Khatta Meetha Nimbu",
+        hi: "खट्टा मीठा नींबू अचार",
+        tag: "धूप में पका पतला छिलका नींबू, अजवाइन और हींग युक्त पाचनवर्धक।",
+        price: 220,
+        mrp: 260,
+        emoji: "🍋",
+        img: "",
+        bestseller: false
+      },
+      {
+        id: "p_greenchilli",
+        name: "Hari Mirch Rahi Ka Tadka",
+        hi: "तीखी हरी मिर्च का अचार",
+        tag: "कुरकुरी हरी मिर्च, पीली सरसों व कलौंजी के साथ तीखा स्वाद।",
+        price: 210,
+        mrp: 250,
+        emoji: "🌿",
+        img: "",
+        bestseller: false
+      },
+      {
+        id: "p_mixed",
+        name: "Pachranga Mix Special",
+        hi: "स्पेशल पंचरंगा मिक्स अचार",
+        tag: "गाजर, गोभी, शलगम और कैरी का समृद्ध पारिवारिक संगम।",
+        price: 249,
+        mrp: 299,
+        emoji: "🫙",
+        img: "",
+        bestseller: true
+      }
+    ];
+
+    /* ============================================================
+       INITIALIZATION
+    ============================================================ */
+    async function init() {
+      // Safe cart recovery
+      try {
+        const savedCart = localStorage.getItem("mindo_cart");
+        if (savedCart) cart = JSON.parse(savedCart);
+      } catch (e) {
+        cart = [];
+      }
+
+      // Initialize Firebase
+      try {
+        if (typeof firebase !== 'undefined' && firebaseConfig.apiKey) {
+          firebase.initializeApp(firebaseConfig);
+          db = firebase.database();
+          auth = firebase.auth();
+          firebaseReady = true;
+
+          auth.onAuthStateChanged(user => {
+            isAdmin = !!user;
+            if (document.getElementById("adminModal").classList.contains("flex")) {
+              if (isAdmin) renderAdminDashboard();
+              else renderAdminLogin();
+            }
+          });
+        }
+      } catch (err) {
+        console.warn("Firebase Init note: Local store will be active.", err);
+      }
+
+      await loadProducts();
+      await loadPaymentSettings();
+      renderProducts();
+      updateCartBadge();
+      
+      const yrEl = document.getElementById("yr");
+      if (yrEl) yrEl.textContent = new Date().getFullYear();
     }
-    img.src = event.target.result;
-  }
-  reader.readAsDataURL(file);
-}
 
-async function saveProduct(e, index){
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const data = {
-    name: fd.get("name").trim(),
-    hi: fd.get("hi").trim(),
-    tag: fd.get("tag").trim(),
-    price: parseInt(fd.get("price")),
-    mrp: parseInt(fd.get("mrp")) || null,
-    emoji: fd.get("emoji").trim() || "🫙",
-    img: fd.get("img").trim(),
-    bestseller: fd.get("bestseller") === "on"
-  };
-
-  try {
-    if (firebaseReady){
-      if (index >= 0 && products[index].id){
-        await db.ref('products/' + products[index].id).update(data);
+    /* ============================================================
+       PRODUCTS MANAGEMENT
+    ============================================================ */
+    async function loadProducts() {
+      if (firebaseReady) {
+        try {
+          const snapshot = await db.ref('products').once('value');
+          const data = snapshot.val();
+          if (data) {
+            products = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+          } else {
+            // Seed defaults if fresh DB
+            products = [...DEFAULT_PRODUCTS];
+          }
+        } catch (e) {
+          console.error("Products load error:", e);
+          loadLocalProducts();
+        }
       } else {
-        await db.ref('products').push({ ...data, createdAt: firebase.database.ServerValue.TIMESTAMP });
+        loadLocalProducts();
       }
     }
-    
-    if (index >= 0) products[index] = { ...products[index], ...data };
-    else products.push({ id:"local_"+Date.now(), ...data });
-    
-    localStorage.setItem("mindo_products_new", JSON.stringify(products));
-    toast("✅ Saved", "success");
-    renderProducts();
-    renderAdminPanel();
-  } catch(err){ toast("Save failed: " + err.message, "error"); }
-}
 
-async function deleteProduct(index){
-  if (!confirm("Delete product '" + products[index].name + "'?")) return;
-  try {
-    if (firebaseReady && products[index].id && !products[index].id.startsWith("local_")){
-      await db.ref('products/' + products[index].id).remove();
+    function loadLocalProducts() {
+      const cached = localStorage.getItem("mindo_products_new");
+      products = cached ? JSON.parse(cached) : [...DEFAULT_PRODUCTS];
     }
-    products.splice(index, 1);
-    localStorage.setItem("mindo_products_new", JSON.stringify(products));
-    toast("🗑️ Deleted");
-    renderProducts();
-    renderAdminPanel();
-  } catch(err){ toast("Delete failed: " + err.message, "error"); }
-}
 
-/* ---- Payment Admin ---- */
-function renderPaymentPanel(panel){
-  panel.innerHTML = `
-    <div class="admin-header"><h3>💳 Payment Settings</h3></div>
-    <div style="background:#fff8ea;padding:20px;border-radius:14px;border:2px solid var(--gold)">
-      <div class="form-group">
-        <label>UPI ID</label>
-        <input id="upiIdInput" value="${paymentSettings.upiId||''}" placeholder="e.g. 8383050500@ybl">
-      </div>
-      <div class="form-group">
-        <label>QR Code Image</label>
-        <input type="file" accept="image/*" id="qrFile" onchange="handleQrUpload(event)">
-        ${paymentSettings.qrCode ? `<div style="margin-top:12px;text-align:center"><img src="${paymentSettings.qrCode}" style="max-width:180px;border-radius:12px;border:2px solid var(--gold)"></div>` : ""}
-      </div>
-      <button class="btn green" onclick="saveUpi()" style="width:100%">💾 Save UPI ID</button>
-    </div>`;
-}
+    function renderProducts() {
+      const grid = document.getElementById("productGrid");
+      if (!grid) return;
 
-async function handleQrUpload(e){
-  const file = e.target.files[0];
-  if (!file) return;
-  if (file.size > 500 * 1024){ toast("Image too large (max 500KB)", "error"); return; }
-  const reader = new FileReader();
-  reader.onload = async (ev) => {
-    try {
-      const qrCode = ev.target.result;
-      if (firebaseReady){
-        await db.ref('settings/payment').update({ qrCode, updatedAt: firebase.database.ServerValue.TIMESTAMP });
+      if (!products.length) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 text-center bg-white rounded-3xl border border-brand-earth/10">
+            <span class="text-5xl block mb-2">🫙</span>
+            <p class="font-bold text-brand-greendark text-lg">अभी कोई प्रोडक्ट उपलब्ध नहीं है</p>
+            <p class="text-sm text-brand-muted">एडमिन पैनल से नए अचार जोड़ें।</p>
+          </div>
+        `;
+        return;
       }
-      paymentSettings.qrCode = qrCode;
-      localStorage.setItem("mindo_payment", JSON.stringify(paymentSettings));
-      toast("✅ QR saved", "success");
+
+      const displayProducts = showAllProducts ? products : products.slice(0, 8);
+
+      let html = displayProducts.map((p, idx) => {
+        const imgUrl = p.img ? (p.img.startsWith("http") || p.img.startsWith("data:") ? p.img : IMG_BASE + p.img) : "";
+        
+        return `
+          <div class="group bg-white rounded-3xl p-5 border border-brand-gold/30 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            
+            ${p.bestseller ? `
+              <div class="absolute top-4 left-4 z-10 bg-brand-red text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1">
+                <i class="fa-solid fa-star text-[10px] text-brand-gold"></i> Bestseller
+              </div>
+            ` : ''}
+
+            <!-- Jar Visual / Image Area -->
+            <div class="relative h-56 rounded-2xl bg-gradient-to-tr from-[#FFF3DA] to-[#FFE5AF] flex items-center justify-center overflow-hidden mb-4 group-hover:scale-[1.02] transition-transform duration-300">
+              ${imgUrl ? `
+                <img src="${imgUrl}" alt="${p.name}" class="w-full h-full object-cover">
+              ` : `
+                <span class="text-7xl filter drop-shadow select-none group-hover:rotate-6 transition-transform duration-300">${p.emoji || "🫙"}</span>
+              `}
+              <div class="absolute bottom-2.5 right-2.5 bg-brand-greendark/90 text-brand-gold text-[11px] font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
+                450g Jar
+              </div>
+            </div>
+
+            <!-- Body Details -->
+            <div class="space-y-2 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-serif font-black text-lg text-brand-greendark group-hover:text-brand-red transition-colors leading-snug">
+                  ${p.name}
+                </h3>
+                ${p.hi ? `<p class="font-hindi text-xs text-brand-red font-semibold">${p.hi}</p>` : ''}
+                <p class="text-xs text-brand-muted line-clamp-2 mt-1.5 leading-relaxed">${p.tag || "शुद्ध सरसों तेल और दादी-नानी के पारंपरिक मसाले से निर्मित।"}</p>
+              </div>
+
+              <!-- Price & Add Action -->
+              <div class="pt-4 mt-2 border-t border-brand-earth/10 flex items-center justify-between">
+                <div>
+                  <span class="text-xs text-gray-400 line-through">${p.mrp ? `₹${p.mrp}` : ''}</span>
+                  <div class="font-serif font-black text-2xl text-brand-red leading-none">
+                    ₹${p.price}
+                  </div>
+                </div>
+
+                <button onclick="addToCartByIndex(${idx})" class="bg-brand-green hover:bg-brand-greendark text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center gap-2 shadow-sm hover:shadow transition-all active:scale-95">
+                  <i class="fa-solid fa-cart-shopping text-brand-gold"></i>
+                  <span>Add to Bag</span>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        `;
+      }).join("");
+
+      if (!showAllProducts && products.length > 8) {
+        html += `
+          <div onclick="showAllPickles()" class="bg-brand-cream/80 hover:bg-amber-100/70 border-2 border-dashed border-brand-gold/60 rounded-3xl p-6 flex flex-col items-center justify-center text-center cursor-pointer transition group min-h-[360px]">
+            <div class="w-16 h-16 rounded-full bg-brand-gold/20 text-brand-green flex items-center justify-center text-3xl mb-4 group-hover:scale-110 transition">
+              <i class="fa-solid fa-plus"></i>
+            </div>
+            <h3 class="font-serif font-black text-xl text-brand-greendark mb-1">See All Pickles</h3>
+            <p class="text-xs text-brand-muted font-hindi">सभी ${products.length} पारंपरिक अचार देखें</p>
+          </div>
+        `;
+      }
+
+      grid.innerHTML = html;
+    }
+
+    function showAllPickles() {
+      showAllProducts = true;
+      renderProducts();
+    }
+
+    function quickAddSample() {
+      if (products.length > 0) {
+        addToCart(products[0]);
+      } else {
+        addToCart({ name: "Mindo Heritage Mix Jar", price: 249, emoji: "🫙" });
+      }
+    }
+
+    function addToCartByIndex(index) {
+      if (products[index]) addToCart(products[index]);
+    }
+
+    /* ============================================================
+       CART LOGIC & REALTIME STATE
+    ============================================================ */
+    function addToCart(item) {
+      const existing = cart.find(i => i.name === item.name);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          name: item.name,
+          price: Number(item.price),
+          emoji: item.emoji || "🫙",
+          img: item.img || "",
+          qty: 1
+        });
+      }
+      saveCart();
+      updateCartBadge();
+      toast("✅ कार्ट में जोड़ा गया! (" + item.name + ")", "success");
+    }
+
+    function saveCart() {
+      localStorage.setItem("mindo_cart", JSON.stringify(cart));
+    }
+
+    function updateCartBadge() {
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      const navBadge = document.getElementById("navCartBadge");
+      const floatBadge = document.getElementById("floatCartBadge");
+      
+      if (navBadge) navBadge.textContent = count;
+      if (floatBadge) floatBadge.textContent = count;
+    }
+
+    function updateQty(index, delta) {
+      if (!cart[index]) return;
+      cart[index].qty += delta;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      saveCart();
+      updateCartBadge();
+      renderCartContent();
+    }
+
+    function removeFromCart(index) {
+      if (!cart[index]) return;
+      cart.splice(index, 1);
+      saveCart();
+      updateCartBadge();
+      renderCartContent();
+    }
+
+    function openCart() {
+      const modal = document.getElementById("cartModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      renderCartContent();
+    }
+
+    function renderCartContent() {
+      const container = document.getElementById("cartContent");
+      if (!container) return;
+
+      if (!cart.length) {
+        container.innerHTML = `
+          <div class="text-center py-12 space-y-4">
+            <div class="w-20 h-20 mx-auto rounded-full bg-brand-cream text-brand-golddark flex items-center justify-center text-4xl">
+              <i class="fa-solid fa-basket-shopping"></i>
+            </div>
+            <h3 class="font-serif font-black text-2xl text-brand-greendark">आपका कार्ट अभी खाली है</h3>
+            <p class="text-xs sm:text-sm text-brand-muted max-w-xs mx-auto">स्वादिष्ट और शुद्ध देसी अचार चुनें और अपने भोजन का स्वाद बढ़ाएं।</p>
+            <button onclick="closeModal('cartModal')" class="bg-brand-green text-white font-bold px-6 py-2.5 rounded-xl text-sm shadow hover:bg-brand-greendark transition">
+              Explore Pickles
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      const itemsHtml = cart.map((item, idx) => {
+        const imgUrl = item.img ? (item.img.startsWith("http") || item.img.startsWith("data:") ? item.img : IMG_BASE + item.img) : "";
+        return `
+          <div class="flex items-center justify-between gap-3 py-3 border-b border-gray-100">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center overflow-hidden shrink-0 border border-amber-200">
+                ${imgUrl ? `<img src="${imgUrl}" class="w-full h-full object-cover">` : `<span class="text-2xl">${item.emoji || "🫙"}</span>`}
+              </div>
+              <div>
+                <h4 class="font-bold text-xs sm:text-sm text-brand-greendark">${item.name}</h4>
+                <p class="text-xs font-serif font-bold text-brand-red">₹${item.price} each</p>
+              </div>
+            </div>
+
+            <!-- Qty controller -->
+            <div class="flex items-center gap-3">
+              <div class="flex items-center bg-gray-100 rounded-lg p-1 border border-gray-200">
+                <button onclick="updateQty(${idx}, -1)" class="w-6 h-6 flex items-center justify-center text-gray-700 font-bold hover:text-brand-red">−</button>
+                <span class="w-7 text-center font-bold text-xs">${item.qty}</span>
+                <button onclick="updateQty(${idx}, 1)" class="w-6 h-6 flex items-center justify-center text-gray-700 font-bold hover:text-brand-green">+</button>
+              </div>
+              <button onclick="removeFromCart(${idx})" class="text-gray-400 hover:text-brand-red text-sm transition">
+                <i class="fa-regular fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // Dynamic QR Code generation for seamless direct UPI payment
+      const upiString = `upi://pay?pa=${paymentSettings.upiId || '8383050500@ybl'}&pn=MindoPickles&am=${total}&cu=INR`;
+      const qrCodeApiUrl = paymentSettings.qrCode 
+        ? paymentSettings.qrCode 
+        : `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiString)}`;
+
+      container.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+            <h3 class="font-serif font-black text-2xl text-brand-greendark flex items-center gap-2">
+              <i class="fa-solid fa-basket-shopping text-brand-gold"></i> Your Order
+            </h3>
+            <span class="text-xs font-bold text-brand-muted">${cart.length} item(s)</span>
+          </div>
+
+          <!-- Items Scroll Area -->
+          <div class="max-h-56 overflow-y-auto pr-1">
+            ${itemsHtml}
+          </div>
+
+          <!-- Total Calculation Pill -->
+          <div class="bg-brand-cream/90 p-4 rounded-2xl flex items-center justify-between border border-brand-gold/30">
+            <div>
+              <p class="text-xs text-brand-muted font-semibold">Total Payable Amount</p>
+              <p class="text-[11px] text-brand-green font-bold">Free Shipping on Prepaid / WhatsApp Confirmation</p>
+            </div>
+            <div class="font-serif font-black text-3xl text-brand-red">₹${total}</div>
+          </div>
+
+          <!-- Checkout Details Form -->
+          <form onsubmit="submitCartOrder(event)" class="space-y-3 pt-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-brand-earth mb-1">आपका नाम (Full Name) *</label>
+                <input type="text" name="customerName" required placeholder="जैसे: Rajesh Sharma" class="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-green focus:ring-1 focus:ring-brand-green outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-brand-earth mb-1">मोबाइल नंबर (Phone) *</label>
+                <input type="tel" name="phone" required placeholder="10-digit WhatsApp No." class="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-green focus:ring-1 focus:ring-brand-green outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-earth mb-1">पूरा डिलीवरी पता (Complete Delivery Address) *</label>
+              <textarea name="address" required rows="2" placeholder="House/Flat No, Street, Landmark, City, State, PIN Code" class="w-full text-xs sm:text-sm px-3.5 py-2 rounded-xl border border-gray-300 focus:border-brand-green focus:ring-1 focus:ring-brand-green outline-none"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-earth mb-1">कोई स्पेशल नोट (Special Instruction - Optional)</label>
+              <input type="text" name="note" placeholder="जैसे: कम तीखा या अतिरिक्त पैकिंग" class="w-full text-xs sm:text-sm px-3.5 py-2 rounded-xl border border-gray-300 focus:border-brand-green focus:ring-1 focus:ring-brand-green outline-none">
+            </div>
+
+            <!-- Instant UPI Scan Section -->
+            <div class="p-4 rounded-2xl bg-amber-50/70 border border-amber-200 text-center space-y-2">
+              <p class="text-xs font-bold text-brand-greendark flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-qrcode text-brand-golddark"></i> Scan & Pay via any UPI App (GPay, PhonePe, Paytm)
+              </p>
+              
+              <div class="inline-block p-2 bg-white rounded-xl shadow-sm border border-amber-300">
+                <img src="${qrCodeApiUrl}" alt="UPI QR Code" class="w-32 h-32 mx-auto object-contain">
+              </div>
+
+              <div class="text-[11px] font-mono font-semibold text-brand-earth bg-white/80 py-1 px-3 rounded-lg inline-block border border-gray-200">
+                UPI ID: ${paymentSettings.upiId || '8383050500@ybl'}
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="submitCartBtn" class="w-full bg-gradient-to-r from-brand-green to-brand-greendark hover:from-brand-greendark hover:to-brand-green text-white font-extrabold py-3.5 rounded-xl shadow-warm flex items-center justify-center gap-2 text-sm transition">
+              <i class="fa-brands fa-whatsapp text-lg text-emerald-400"></i>
+              <span>ऑर्डर कन्फर्म करें (Place Order ₹${total})</span>
+            </button>
+          </form>
+        </div>
+      `;
+    }
+
+    async function submitCartOrder(e) {
+      e.preventDefault();
+      const btn = document.getElementById("submitCartBtn");
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Placing Order...`;
+
+      const fd = new FormData(e.target);
+      const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      const orderData = {
+        customerName: fd.get("customerName").trim(),
+        phone: fd.get("phone").trim(),
+        address: fd.get("address").trim(),
+        note: fd.get("note").trim(),
+        items: cart.map(item => ({
+          name: item.name,
+          price: item.price,
+          qty: item.qty,
+          emoji: item.emoji || "🫙"
+        })),
+        total,
+        status: "pending"
+      };
+
+      try {
+        let orderId;
+        if (firebaseReady) {
+          const ref = db.ref('orders').push();
+          await ref.set({
+            ...orderData,
+            createdAt: firebase.database.ServerValue.TIMESTAMP
+          });
+          orderId = ref.key.slice(-6).toUpperCase();
+        } else {
+          orderId = "MND" + Date.now().toString().slice(-5);
+          const orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
+          orders.push({ id: orderId, ...orderData, createdAt: Date.now() });
+          localStorage.setItem("mindo_orders", JSON.stringify(orders));
+        }
+
+        const itemsString = cart.map(item => `${item.name} (${item.qty} jar)`).join(", ");
+        const waMsg = encodeURIComponent(
+          `Namaste Mindo Pickles! I have placed an order.\n\n` +
+          `Order ID: #${orderId}\n` +
+          `Name: ${orderData.customerName}\n` +
+          `Phone: ${orderData.phone}\n` +
+          `Items: ${itemsString}\n` +
+          `Total: ₹${total}\n` +
+          `Address: ${orderData.address}\n` +
+          `${orderData.note ? `Note: ${orderData.note}\n` : ''}` +
+          `\nPlease confirm my dispatch!`
+        );
+
+        // Success Confirmation View
+        document.getElementById("cartContent").innerHTML = `
+          <div class="text-center py-6 space-y-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="font-serif font-black text-2xl text-brand-greendark">ऑर्डर सफलतापूर्वक प्राप्त हुआ!</h3>
+            <p class="text-xs sm:text-sm text-brand-muted max-w-sm mx-auto">
+              धन्यवाद! आपकी रसोई में शुद्ध, स्वादिष्ट अचार पहुँचाने की तैयारी शुरू हो चुकी है।
+            </p>
+            
+            <div class="bg-brand-cream border border-brand-gold/40 px-4 py-2 rounded-xl inline-block font-mono font-bold text-brand-greendark text-sm">
+              Order ID: #${orderId}
+            </div>
+
+            <div class="pt-2 space-y-2">
+              <a href="https://wa.me/${PHONE}?text=${waMsg}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 shadow-md transition">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>WhatsApp पर तुरंत पर्ची भेजें</span>
+              </a>
+
+              <button onclick="clearAndCloseCart()" class="w-full bg-gray-100 hover:bg-gray-200 text-brand-earth font-bold py-3 rounded-xl text-xs transition">
+                Continue Shopping (शॉपिंग जारी रखें)
+              </button>
+            </div>
+          </div>
+        `;
+
+      } catch (err) {
+        console.error("Order submit failed:", err);
+        toast("Order failed: " + err.message, "error");
+        btn.disabled = false;
+        btn.innerHTML = `Order Place करें (₹${total})`;
+      }
+    }
+
+    function clearAndCloseCart() {
+      cart = [];
+      saveCart();
+      updateCartBadge();
+      closeModal("cartModal");
+      renderProducts();
+    }
+
+    /* ============================================================
+       PAYMENT SETTINGS LOGIC
+    ============================================================ */
+    async function loadPaymentSettings() {
+      if (!firebaseReady) {
+        const cached = localStorage.getItem("mindo_payment");
+        if (cached) paymentSettings = JSON.parse(cached);
+        return;
+      }
+      try {
+        const snapshot = await db.ref('settings/payment').once('value');
+        if (snapshot.exists()) {
+          paymentSettings = { ...paymentSettings, ...snapshot.val() };
+        }
+      } catch (e) {
+        console.warn("Payment settings fetch error:", e);
+      }
+    }
+
+    /* ============================================================
+       ADMIN MANAGEMENT (AUTH, ORDERS, PRODUCTS, PAYMENTS)
+    ============================================================ */
+    function openAdmin() {
+      const modal = document.getElementById("adminModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+      if (isAdmin) renderAdminDashboard();
+      else renderAdminLogin();
+    }
+
+    function renderAdminLogin() {
+      const container = document.getElementById("adminContent");
+      container.innerHTML = `
+        <div class="max-w-md mx-auto py-6 space-y-6">
+          <div class="text-center space-y-2">
+            <div class="w-12 h-12 mx-auto rounded-2xl bg-brand-green/10 text-brand-green flex items-center justify-center text-xl">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <h2 class="font-serif font-black text-2xl text-brand-greendark">Mindo Admin Login</h2>
+            <p class="text-xs text-brand-muted">सुरक्षित स्टोर मैनेजमेंट एवं ऑर्डर्स डैशबोर्ड</p>
+          </div>
+
+          <form onsubmit="adminLogin(event)" class="space-y-4">
+            <div>
+              <label class="block text-xs font-bold text-brand-earth mb-1">Admin Email</label>
+              <input type="email" id="adminEmail" required placeholder="admin@example.com" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-green outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-earth mb-1">Password</label>
+              <input type="password" id="adminPass" required placeholder="••••••••" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-brand-green outline-none">
+            </div>
+
+            <button type="submit" id="loginBtn" class="w-full bg-brand-green hover:bg-brand-greendark text-white font-bold py-3 rounded-xl transition text-sm flex items-center justify-center gap-2">
+              <span>Sign In as Admin</span>
+            </button>
+          </form>
+        </div>
+      `;
+    }
+
+    function adminLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById("adminEmail").value.trim();
+      const pass = document.getElementById("adminPass").value.trim();
+      const btn = document.getElementById("loginBtn");
+
+      btn.disabled = true;
+      btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Authenticating...`;
+
+      if (firebaseReady) {
+        auth.signInWithEmailAndPassword(email, pass)
+          .then(() => {
+            toast("Welcome back Admin! 👋", "success");
+            isAdmin = true;
+            renderAdminDashboard();
+          })
+          .catch(err => {
+            toast("Login Failed: " + err.message, "error");
+            btn.disabled = false;
+            btn.innerHTML = `Sign In as Admin`;
+          });
+      } else {
+        // Simple offline fallback
+        if (pass.length >= 4) {
+          isAdmin = true;
+          toast("Offline Admin Mode Activated", "success");
+          renderAdminDashboard();
+        } else {
+          toast("Password should be at least 4 characters", "error");
+          btn.disabled = false;
+          btn.innerHTML = `Sign In as Admin`;
+        }
+      }
+    }
+
+    function renderAdminDashboard() {
+      const container = document.getElementById("adminContent");
+      container.innerHTML = `
+        <div class="space-y-5">
+          <div class="flex flex-wrap items-center justify-between pb-4 border-b border-gray-200 gap-2">
+            <div>
+              <h2 class="font-serif font-black text-2xl text-brand-greendark flex items-center gap-2">
+                <i class="fa-solid fa-cubes-stacked text-brand-gold"></i> Admin Management
+              </h2>
+              <p class="text-xs text-brand-muted">Mindo Storefront Realtime Operations</p>
+            </div>
+            <button onclick="adminLogout()" class="text-xs font-bold px-3 py-1.5 rounded-lg border border-red-200 text-red-600 hover:bg-red-50 transition">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </button>
+          </div>
+
+          <!-- Tab Navigation -->
+          <div class="flex gap-2 border-b border-gray-100 pb-2">
+            <button onclick="switchTab('orders')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${adminTab === 'orders' ? 'bg-brand-green text-white' : 'text-gray-600 hover:bg-gray-100'}">
+              <i class="fa-solid fa-box-open mr-1"></i> Customer Orders
+            </button>
+            <button onclick="switchTab('products')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${adminTab === 'products' ? 'bg-brand-green text-white' : 'text-gray-600 hover:bg-gray-100'}">
+              <i class="fa-solid fa-jar mr-1"></i> Products Catalog
+            </button>
+            <button onclick="switchTab('payment')" class="px-4 py-2 rounded-xl text-xs font-bold transition ${adminTab === 'payment' ? 'bg-brand-green text-white' : 'text-gray-600 hover:bg-gray-100'}">
+              <i class="fa-solid fa-qrcode mr-1"></i> UPI & QR Settings
+            </button>
+          </div>
+
+          <!-- Dynamic Panel Outlet -->
+          <div id="adminPanelArea"></div>
+        </div>
+      `;
       renderAdminPanel();
-    } catch(err){ toast("Upload failed: " + err.message, "error"); }
-  };
-  reader.readAsDataURL(file);
-}
-
-async function saveUpi(){
-  const upiId = document.getElementById("upiIdInput").value.trim();
-  try {
-    if (firebaseReady){
-      await db.ref('settings/payment').update({ upiId, updatedAt: firebase.database.ServerValue.TIMESTAMP });
     }
-    paymentSettings.upiId = upiId;
-    localStorage.setItem("mindo_payment", JSON.stringify(paymentSettings));
-    toast("✅ UPI ID saved", "success");
-  } catch(err){ toast("Save failed: " + err.message, "error"); }
-}
 
-function adminLogout(){
-  auth.signOut().then(() => {
-    closeModal("adminModal");
-    toast("Logged out securely");
-  });
-}
+    function switchTab(tab) {
+      adminTab = tab;
+      renderAdminDashboard();
+    }
 
-/* ============================================================
-   UTILS
-   ============================================================ */
-function closeModal(id){
-  document.getElementById(id).classList.remove("active");
-  document.body.style.overflow = "";
-}
+    function renderAdminPanel() {
+      const panel = document.getElementById("adminPanelArea");
+      if (!panel) return;
+      if (adminTab === "orders") renderOrdersPanel(panel);
+      else if (adminTab === "products") renderProductsPanel(panel);
+      else if (adminTab === "payment") renderPaymentPanel(panel);
+    }
 
-function toast(msg, type = ""){
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.className = "toast " + type + " show";
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.classList.remove("show"), 3000);
-}
+    /* ---- Orders Panel ---- */
+    async function renderOrdersPanel(panel) {
+      panel.innerHTML = `<div class="py-12 text-center text-gray-500"><i class="fa-solid fa-spinner animate-spin text-2xl"></i> Loading orders...</div>`;
+      let orders = [];
 
-document.querySelectorAll(".modal").forEach(m => {
-  m.addEventListener("click", e => { if (e.target === m) closeModal(m.id); });
-});
+      if (firebaseReady) {
+        try {
+          const snapshot = await db.ref('orders').once('value');
+          const data = snapshot.val() || {};
+          orders = Object.keys(data).map(key => ({ id: key, ...data[key] }));
+          orders.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        } catch (e) {
+          toast("Error fetching orders: " + e.message, "error");
+        }
+      } else {
+        orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
+        orders.reverse();
+      }
 
-// Start
-init();
-</script>
+      if (!orders.length) {
+        panel.innerHTML = `
+          <div class="text-center py-12 text-brand-muted bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+            <i class="fa-solid fa-inbox text-4xl block mb-2 opacity-40"></i>
+            <p class="font-bold">अभी कोई ऑर्डर नहीं है</p>
+          </div>
+        `;
+        return;
+      }
+
+      const pendingCount = orders.filter(o => o.status !== "delivered").length;
+
+      const orderCards = orders.map(o => {
+        const isDelivered = o.status === "delivered";
+        const dateStr = new Date(o.createdAt || Date.now()).toLocaleString("en-IN", {
+          day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit"
+        });
+        const shortId = (o.id || "").slice(-6).toUpperCase();
+        const itemsText = (o.items || []).map(i => `${i.name} × ${i.qty}`).join(", ");
+
+        return `
+          <div class="p-4 rounded-2xl border ${isDelivered ? 'bg-emerald-50/60 border-emerald-200' : 'bg-white border-gray-200 shadow-sm'} space-y-2">
+            <div class="flex items-start justify-between gap-2">
+              <div>
+                <span class="font-mono text-xs font-bold text-brand-muted">#${shortId}</span>
+                <h4 class="font-bold text-sm text-brand-greendark">${o.customerName} <span class="text-xs font-normal text-gray-500">(${dateStr})</span></h4>
+                <p class="text-xs text-brand-earth font-medium"><i class="fa-solid fa-phone text-gray-400"></i> ${o.phone}</p>
+              </div>
+              <span class="text-[10px] uppercase font-extrabold px-2.5 py-1 rounded-full ${isDelivered ? 'bg-emerald-200 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                ${o.status || 'pending'}
+              </span>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-gray-50 text-xs text-brand-earth border border-gray-100">
+              <span class="font-bold text-brand-greendark">Jars:</span> ${itemsText}
+            </div>
+
+            <div class="text-xs text-gray-600">
+              <p><span class="font-semibold text-gray-800">Address:</span> ${o.address}</p>
+              ${o.note ? `<p><span class="font-semibold text-gray-800">Note:</span> ${o.note}</p>` : ''}
+              <p class="mt-1 font-serif font-black text-sm text-brand-red">Total: ₹${o.total}</p>
+            </div>
+
+            <div class="pt-2 flex flex-wrap items-center gap-2 border-t border-gray-100">
+              ${!isDelivered ? `
+                <button onclick="markOrderStatus('${o.id}', 'delivered')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1">
+                  <i class="fa-solid fa-check"></i> Mark Delivered
+                </button>
+              ` : `
+                <button onclick="markOrderStatus('${o.id}', 'pending')" class="bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs font-bold px-3 py-1.5 rounded-lg">
+                  ↩ Undo to Pending
+                </button>
+              `}
+
+              <a href="https://wa.me/91${o.phone}?text=${encodeURIComponent('Namaste ' + o.customerName + '! Your Mindo Pickles order #' + shortId + ' is processed.')}" target="_blank" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-green-50 text-emerald-700 border border-green-200 hover:bg-green-100">
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp
+              </a>
+
+              <a href="tel:${o.phone}" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-gray-100 text-gray-700 hover:bg-gray-200">
+                <i class="fa-solid fa-phone"></i> Call
+              </a>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      panel.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-brand-greendark">Total: ${orders.length} | Pending: ${pendingCount}</span>
+            <button onclick="renderAdminPanel()" class="text-xs font-bold text-brand-green hover:underline flex items-center gap-1">
+              <i class="fa-solid fa-arrows-rotate"></i> Refresh
+            </button>
+          </div>
+          <div class="max-h-[55vh] overflow-y-auto space-y-3 pr-1">
+            ${orderCards}
+          </div>
+        </div>
+      `;
+    }
+
+    async function markOrderStatus(id, status) {
+      try {
+        if (firebaseReady) {
+          await db.ref('orders/' + id).update({
+            status: status,
+            updatedAt: firebase.database.ServerValue.TIMESTAMP
+          });
+        } else {
+          const orders = JSON.parse(localStorage.getItem("mindo_orders") || "[]");
+          const target = orders.find(x => x.id === id);
+          if (target) target.status = status;
+          localStorage.setItem("mindo_orders", JSON.stringify(orders));
+        }
+        toast(`Order updated to ${status}`);
+        renderAdminPanel();
+      } catch (err) {
+        toast("Status update error: " + err.message, "error");
+      }
+    }
+
+    /* ---- Products Panel ---- */
+    function renderProductsPanel(panel) {
+      const itemsList = products.map((p, idx) => `
+        <div class="flex items-center justify-between p-3 rounded-xl bg-white border border-gray-200 gap-3">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl">${p.emoji || "🫙"}</span>
+            <div>
+              <h4 class="font-bold text-xs sm:text-sm text-brand-greendark">${p.name}</h4>
+              <p class="text-xs text-brand-red font-semibold">₹${p.price} ${p.mrp ? `<span class="text-gray-400 line-through">₹${p.mrp}</span>` : ''} ${p.bestseller ? '• ⭐ Bestseller' : ''}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="openProductFormModal(${idx})" class="w-8 h-8 rounded-lg bg-gray-100 hover:bg-brand-green hover:text-white text-gray-700 flex items-center justify-center text-xs transition">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+            <button onclick="deleteProduct(${idx})" class="w-8 h-8 rounded-lg bg-gray-100 hover:bg-brand-red hover:text-white text-gray-700 flex items-center justify-center text-xs transition">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      `).join("");
+
+      panel.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-brand-greendark">${products.length} Products listed</span>
+            <button onclick="openProductFormModal(-1)" class="bg-brand-green hover:bg-brand-greendark text-white text-xs font-bold px-3 py-1.5 rounded-lg flex items-center gap-1 transition">
+              <i class="fa-solid fa-plus"></i> Add New Pickle
+            </button>
+          </div>
+          <div class="max-h-[45vh] overflow-y-auto space-y-2 pr-1">
+            ${itemsList || '<p class="text-xs text-gray-400">No products</p>'}
+          </div>
+          <div id="productFormArea"></div>
+        </div>
+      `;
+    }
+
+    function openProductFormModal(index = -1) {
+      const p = index >= 0 ? products[index] : {
+        name: "", hi: "", tag: "", price: 249, mrp: 299, emoji: "🫙", img: "", bestseller: false
+      };
+
+      const container = document.getElementById("productFormArea");
+      container.innerHTML = `
+        <div class="p-4 rounded-2xl bg-amber-50/70 border border-brand-gold/40 mt-3 space-y-3">
+          <h4 class="font-serif font-black text-sm text-brand-greendark">
+            ${index >= 0 ? 'Edit Pickle Details' : 'Add New Handcrafted Pickle'}
+          </h4>
+
+          <form onsubmit="saveProduct(event, ${index})" class="space-y-3 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <div>
+                <label class="block font-bold mb-1">Pickle English Name *</label>
+                <input name="name" required value="${p.name || ''}" placeholder="e.g. Aam Ka Achar" class="w-full p-2 rounded-lg border border-gray-300">
+              </div>
+              <div>
+                <label class="block font-bold mb-1">Hindi Display Name</label>
+                <input name="hi" value="${p.hi || ''}" placeholder="जैसे: दादी का आम अचार" class="w-full p-2 rounded-lg border border-gray-300">
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-bold mb-1">Short Description / Spices</label>
+              <input name="tag" value="${p.tag || ''}" placeholder="e.g. 100% सरसों तेल, सौंफ व मेथी के साथ" class="w-full p-2 rounded-lg border border-gray-300">
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div>
+                <label class="block font-bold mb-1">Selling Price (₹) *</label>
+                <input type="number" name="price" required value="${p.price || ''}" class="w-full p-2 rounded-lg border border-gray-300">
+              </div>
+              <div>
+                <label class="block font-bold mb-1">MRP (₹)</label>
+                <input type="number" name="mrp" value="${p.mrp || ''}" class="w-full p-2 rounded-lg border border-gray-300">
+              </div>
+              <div>
+                <label class="block font-bold mb-1">Emoji Icon</label>
+                <input name="emoji" maxlength="4" value="${p.emoji || '🫙'}" class="w-full p-2 rounded-lg border border-gray-300 text-center">
+              </div>
+            </div>
+
+            <div>
+              <label class="block font-bold mb-1">Upload Product Photo (Canvas Compressed)</label>
+              <input type="file" accept="image/*" onchange="handleProductImageUpload(event)" class="w-full text-xs">
+              <input type="hidden" name="img" id="productImageBase64" value="${p.img || ''}">
+              <div id="productImgPreview" class="mt-2">
+                ${p.img ? `<img src="${p.img}" class="h-16 rounded-lg border border-gray-200">` : ''}
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-1">
+              <input type="checkbox" id="bestsellerCheck" name="bestseller" ${p.bestseller ? 'checked' : ''}>
+              <label for="bestsellerCheck" class="font-bold cursor-pointer">Mark as ⭐ Bestseller badge</label>
+            </div>
+
+            <div class="flex items-center gap-2 pt-2">
+              <button type="submit" class="bg-brand-green text-white font-bold px-4 py-2 rounded-lg text-xs hover:bg-brand-greendark">Save Pickle</button>
+              <button type="button" onclick="document.getElementById('productFormArea').innerHTML=''" class="bg-gray-200 text-gray-700 font-bold px-4 py-2 rounded-lg text-xs">Cancel</button>
+            </div>
+          </form>
+        </div>
+      `;
+    }
+
+    function handleProductImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const img = new Image();
+        img.onload = function () {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 450;
+          const scale = MAX_WIDTH / img.width;
+          canvas.width = MAX_WIDTH;
+          canvas.height = img.height * scale;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          const compressed = canvas.toDataURL('image/jpeg', 0.75);
+          document.getElementById('productImageBase64').value = compressed;
+          document.getElementById('productImgPreview').innerHTML = `<img src="${compressed}" class="h-16 rounded-lg border border-gray-300 shadow-sm">`;
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function saveProduct(e, index) {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const data = {
+        name: fd.get("name").trim(),
+        hi: fd.get("hi").trim(),
+        tag: fd.get("tag").trim(),
+        price: parseInt(fd.get("price")),
+        mrp: parseInt(fd.get("mrp")) || null,
+        emoji: fd.get("emoji").trim() || "🫙",
+        img: fd.get("img").trim(),
+        bestseller: fd.get("bestseller") === "on"
+      };
+
+      try {
+        if (firebaseReady) {
+          if (index >= 0 && products[index].id && !products[index].id.startsWith("local_")) {
+            await db.ref('products/' + products[index].id).update(data);
+          } else {
+            const newRef = await db.ref('products').push({
+              ...data,
+              createdAt: firebase.database.ServerValue.TIMESTAMP
+            });
+            data.id = newRef.key;
+          }
+        }
+
+        if (index >= 0) products[index] = { ...products[index], ...data };
+        else products.push({ id: "local_" + Date.now(), ...data });
+
+        localStorage.setItem("mindo_products_new", JSON.stringify(products));
+        toast("✅ Pickle Saved!", "success");
+        renderProducts();
+        renderAdminPanel();
+      } catch (err) {
+        toast("Failed to save: " + err.message, "error");
+      }
+    }
+
+    async function deleteProduct(index) {
+      const p = products[index];
+      if (!p) return;
+
+      // Safe non-blocking custom modal or straightforward confirmation
+      const proceed = window.confirm ? confirm(`Delete '${p.name}' from pickle catalog?`) : true;
+      if (!proceed) return;
+
+      try {
+        if (firebaseReady && p.id && !p.id.startsWith("local_")) {
+          await db.ref('products/' + p.id).remove();
+        }
+        products.splice(index, 1);
+        localStorage.setItem("mindo_products_new", JSON.stringify(products));
+        toast("Pickle removed", "success");
+        renderProducts();
+        renderAdminPanel();
+      } catch (err) {
+        toast("Deletion error: " + err.message, "error");
+      }
+    }
+
+    /* ---- Payment Settings Panel ---- */
+    function renderPaymentPanel(panel) {
+      panel.innerHTML = `
+        <div class="p-4 rounded-2xl bg-amber-50/70 border border-brand-gold/30 space-y-4">
+          <h4 class="font-serif font-black text-sm text-brand-greendark">Payment & UPI Setup</h4>
+          
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-bold text-brand-earth mb-1">Your Business UPI ID (VPA)</label>
+              <input type="text" id="upiIdInput" value="${paymentSettings.upiId || ''}" placeholder="e.g. 8383050500@ybl" class="w-full text-xs sm:text-sm p-2.5 rounded-lg border border-gray-300">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-earth mb-1">Custom Store QR Code Image (Optional)</label>
+              <input type="file" accept="image/*" onchange="handleQrUpload(event)" class="text-xs">
+              <div id="qrPreviewArea" class="mt-2">
+                ${paymentSettings.qrCode ? `<img src="${paymentSettings.qrCode}" class="w-28 h-28 object-contain rounded-lg border border-amber-300 p-1 bg-white">` : ''}
+              </div>
+            </div>
+
+            <button onclick="saveUpiSettings()" class="bg-brand-green text-white font-bold px-4 py-2.5 rounded-lg text-xs hover:bg-brand-greendark transition">
+              <i class="fa-solid fa-floppy-disk mr-1"></i> Save Payment Config
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function handleQrUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (ev) {
+        paymentSettings.qrCode = ev.target.result;
+        document.getElementById('qrPreviewArea').innerHTML = `<img src="${ev.target.result}" class="w-28 h-28 object-contain rounded-lg border border-amber-300 p-1 bg-white">`;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function saveUpiSettings() {
+      const upiId = document.getElementById("upiIdInput").value.trim();
+      paymentSettings.upiId = upiId;
+
+      try {
+        if (firebaseReady) {
+          await db.ref('settings/payment').update({
+            upiId: paymentSettings.upiId,
+            qrCode: paymentSettings.qrCode || "",
+            updatedAt: firebase.database.ServerValue.TIMESTAMP
+          });
+        }
+        localStorage.setItem("mindo_payment", JSON.stringify(paymentSettings));
+        toast("✅ UPI Details saved successfully!", "success");
+      } catch (err) {
+        toast("Save error: " + err.message, "error");
+      }
+    }
+
+    function adminLogout() {
+      if (firebaseReady && auth) {
+        auth.signOut().then(() => {
+          isAdmin = false;
+          closeModal("adminModal");
+          toast("Logged out securely");
+        });
+      } else {
+        isAdmin = false;
+        closeModal("adminModal");
+        toast("Logged out");
+      }
+    }
+
+    /* ============================================================
+       HELPER UTILS & TOAST
+    ============================================================ */
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.add("hidden");
+        el.classList.remove("flex");
+      }
+      document.body.style.overflow = "";
+    }
+
+    function toast(msg, type = "success") {
+      const t = document.getElementById("toast");
+      if (!t) return;
+      t.innerHTML = `<span>${msg}</span>`;
+      t.classList.remove("opacity-0", "-translate-y-4");
+      t.classList.add("opacity-100", "translate-y-0");
+
+      if (type === "error") {
+        t.classList.add("bg-brand-red");
+        t.classList.remove("bg-brand-earth");
+      } else {
+        t.classList.remove("bg-brand-red");
+        t.classList.add("bg-brand-earth");
+      }
+
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => {
+        t.classList.remove("opacity-100", "translate-y-0");
+        t.classList.add("opacity-0", "-translate-y-4");
+      }, 3200);
+    }
+
+    // Modal background click close guard
+    document.querySelectorAll('#cartModal, #adminModal').forEach(modal => {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal(modal.id);
+      });
+    });
+
+    // Boot up
+    window.addEventListener("DOMContentLoaded", init);
+  </script>
 </body>
 </html>
+```
