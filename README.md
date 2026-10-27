@@ -1,5 +1,4 @@
-```html
-<!DOCTYPE html>
+
 <html lang="hi" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
